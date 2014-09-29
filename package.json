@@ -1,0 +1,19 @@
+{
+  "name": "bootstrapped",
+  "version": "1.0.0",
+  "description": "WordPress starter theme built on Bootstrap",
+  "main": "Gruntfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-bower-task" : "latest",
+    "grunt-contrib-cssmin": "latest",
+    "grunt-contrib-imagemin": "latest",
+    "grunt-contrib-jshint": "latest",
+    "grunt-contrib-sass": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-rsync": "latest",
+    "load-grunt-tasks": "latest"
+  }
+}

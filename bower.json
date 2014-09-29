@@ -1,0 +1,8 @@
+{
+    "name": "bootstrapped",
+    "version": "1.0.0",
+    "dependencies": {
+        "bootstrap-sass-official": "latest",
+        "fontawesome": "latest"
+    }
+}
