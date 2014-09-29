@@ -104,7 +104,7 @@ module.exports = function(grunt) {
             options: {
                 src: "./",
                 args: ["--verbose"],
-                exclude: ['.git*', 'node_modules', '.sass-cache', 'Gruntfile.js', 'package.json', '.DS_Store', 'README.md', 'config.rb', '.jshintrc', 'bower.json'],
+                exclude: ['.git*', 'node_modules', '.sass-cache', 'Gruntfile.js', 'package.json', '.DS_Store', 'README.md', '.jshintrc', 'bower.json', 'assets', '.bowerrc', 'sftp-config.json'],
                 recursive: true,
                 syncDestIgnoreExcl: true
             },

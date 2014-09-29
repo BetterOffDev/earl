@@ -3,3 +3,7 @@ node_modules
 .sass-cache
 Gruntfile.js
 assets
+sftp-config.json
+.bowerrc
+.jshintrc
+package.json

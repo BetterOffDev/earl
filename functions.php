@@ -11,6 +11,7 @@ Theme Setup
 
 /**
  * Theme initialization
+ * should include any functions that need to be run right away on theme setup, including CPTs?
  */
 require get_template_directory() . '/lib/init.php';
 
@@ -19,18 +20,19 @@ require get_template_directory() . '/lib/init.php';
  */
 require get_template_directory() . '/lib/theme-functions.php';
 
-
-
 // admin area functions
 
-// thumbnail sizes
+// util functions?
 
-// sidebars & widgets
+// comments functions
 
-// enqueue styles
+// custom post types - one file for each type? maybe include comments for each CPT
 
-// enqueue javascript
+// Team utility functions - get_team_logo, etc
 
-// comments
+// Player utility functions 
 
-// custom post types
+// Video API functions
+
+// Twitter API functions
+
