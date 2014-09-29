@@ -1,8 +1,8 @@
 <?php
 /**
- * bootstrapped functions and definitions
+ * Earl functions and definitions
  *
- * @package bootstrapped
+ * @package Earl
  */
 
 /****************************************

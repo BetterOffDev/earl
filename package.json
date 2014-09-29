@@ -1,7 +1,7 @@
 {
-  "name": "bootstrapped",
+  "name": "Earl",
   "version": "1.0.0",
-  "description": "WordPress starter theme built on Bootstrap",
+  "description": "New DB theme built on Bootstrap",
   "main": "Gruntfile.js",
   "dependencies": {},
   "devDependencies": {

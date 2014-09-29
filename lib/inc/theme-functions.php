@@ -1,9 +1,9 @@
 <?php
 /**
- * bootstrapped theme functions 
+ * Earl theme functions 
  * functions initialized with actions/filters in /lib/init.php
  *
- * @package bootstrapped
+ * @package Earl
  */
 
 

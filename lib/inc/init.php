@@ -1,14 +1,14 @@
 <?php
 /**
- * bootstrapped theme init setup
+ * Earl theme init setup
  * functions defined in theme-functions.php
  *
- * @package bootstrapped
+ * @package Earl
  */
 
 if ( ! function_exists( 'wsdev_bootstrapped_setup' ) ) :
 
-function wsdev_bootstrapped_setup() {
+function wsdev_earl_setup() {
 
 
 	// Clean up the head
@@ -72,6 +72,6 @@ function wsdev_bootstrapped_setup() {
 	add_filter( 'the_content_more_link', 'wsdev_remove_more_jump_link' );
 
 }
-endif; // wsdev_bootstrapped_setup
+endif; // wsdev_earl_setup
 
 add_action( 'after_setup_theme', 'wsdev_bootstrapped_setup' );
