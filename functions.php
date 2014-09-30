@@ -16,23 +16,43 @@ Theme Setup
 require get_template_directory() . '/lib/init.php';
 
 /**
- * Custom theme functions definited in /lib/init.php
+ * Custom theme functions
  */
 require get_template_directory() . '/lib/theme-functions.php';
 
-// admin area functions
+/**
+ * Admin area functions
+ */
+require get_template_directory() . '/lib/admin-functions.php';
 
-// util functions?
+/**
+ * Util functions
+ */
+require get_template_directory() . '/lib/util.php';
 
-// comments functions
+/**
+ * Member functions
+ */
+require get_template_directory() . '/lib/members.php';
 
-// custom post types - one file for each type? maybe include comments for each CPT
+/**
+ * Custom post types
+ */
+require get_template_directory() . '/lib/cpt/video.php';
+require get_template_directory() . '/lib/cpt/memberarticle.php';
+require get_template_directory() . '/lib/cpt/mockdraft.php';
+require get_template_directory() . '/lib/cpt/scoutingnote.php';
 
-// Team utility functions - get_team_logo, etc
+/**
+ * API functions
+ */
+require get_template_directory() . '/lib/api/video-services.php';
 
-// Player utility functions 
 
-// Video API functions
+
+
 
 // Twitter API functions
+
+// short codes & template tags
 

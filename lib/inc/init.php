@@ -1,15 +1,18 @@
 <?php
 /**
  * Earl theme init setup
- * functions defined in theme-functions.php
+ * functions defined in noted locations
  *
  * @package Earl
  */
 
-if ( ! function_exists( 'wsdev_bootstrapped_setup' ) ) :
+if ( ! function_exists( 'wsdev_earl_setup' ) ) :
 
 function wsdev_earl_setup() {
 
+	// Remove the admin bar
+	// Function location: /lib/theme-functions.php
+	add_filter( 'show_admin_bar' , 'wsdev_remove_admin_bar');
 
 	// Clean up the head
 	remove_action( 'wp_head', 'rsd_link' );
@@ -32,17 +35,26 @@ function wsdev_earl_setup() {
 	// add_image_size( $name, $width = 0, $height = 0, $crop = false );
 
 	// Remove Dashboard Meta Boxes
-	// Function location: /lib/theme-functions.php
+	// Function location: /lib/admin-functions.php
 	add_action( 'wp_dashboard_setup', 'wsdev_remove_dashboard_widgets' );
 
 	// Change Admin Menu Order
-	// Function location: /lib/theme-functions.php
+	// Function location: /lib/admin-functions.php
 	add_filter( 'custom_menu_order', '__return_true' );
 	add_filter( 'menu_order', 'wsdev_custom_menu_order' );
 
 	// Hide Admin Areas that are not used
-	// Function location: /lib/theme-functions.php
+	// Function location: /lib/admin-functions.php
 	add_action( 'admin_menu', 'wsdev_remove_menu_pages' );
+
+	// Custom Admin Area footer text
+	// Function location: /lib/admin-functions.php
+	add_filter( 'admin_footer_text', 'wsdev_admin_footer_text' );
+
+	// Custom Admin Area CSS
+	// Function location: /lib/admin-functions.php
+	add_action( 'admin_head', 'wsdev_register_custom_admin_css' );
+
 
 	// Remove default link for images
 	// Function location: /lib/theme-functions.php
@@ -51,11 +63,6 @@ function wsdev_earl_setup() {
 	// Enable support for HTML5 markup.
 	add_theme_support( 'html5', array(
 		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption',
-	) );
-
-	// Enable support for Post Formats.
-	add_theme_support( 'post-formats', array(
-		'aside', 'image', 'video', 'quote', 'link',
 	) );
 
 	// Enqueue scripts
@@ -71,7 +78,84 @@ function wsdev_earl_setup() {
 	// Function location: /lib/theme-functions.php
 	add_filter( 'the_content_more_link', 'wsdev_remove_more_jump_link' );
 
+	// Search form
+	// Function location: /lib/theme-functions.php
+	add_filter( 'get_search_form', 'wsdev_search_form' );
+
+	// Extra author profile fields
+	// Function location: /lib/theme-functions.php
+	add_action( 'show_user_profile', 'wsdev_extra_user_profile_fields' );
+	add_action( 'edit_user_profile', 'wsdev_extra_user_profile_fields' );
+	add_action( 'personal_options_update', 'wsdev_save_extra_user_profile_fields' );
+	add_action( 'edit_user_profile_update', 'wsdev_save_extra_user_profile_fields' );
+
+	// Author page issues
+	// Function location: /lib/theme-functions.php
+	add_action( 'pre_get_posts', 'wsdev_custom_post_author_archive' );
+
+	// Custom query variables
+	// Function location: /lib/theme-functions.php
+	add_filter( 'query_vars', 'wsdev_add_query_vars_filter' );
+
+	// Full page template
+	// Function location: /lib/theme-functions.php
+	add_filter( 'single_template', 'wsdev_get_custom_cat_template' );
+
+	// Custom excerpt
+	// Function location: /lib/util.php
+	remove_filter( 'get_the_excerpt', 'wp_trim_excerpt' );
+	add_filter( 'get_the_excerpt', 'wsdev_trim_excerpt' );
+
+	// Comment redirect
+	// Function location: /lib/theme-functions.php
+	add_filter( 'comment_post_redirect', 'wsdev_redirect_after_comment' );
+
+	// Member functions
+	// Function location: /lib/members.php
+	add_action( 'init', 'wsdev_add_member_role' );
+	add_filter( 'media_view_strings', 'wsdev_member_media_view_strings' );
+	add_filter( 'media_upload_tabs', 'wsdev_member_media_view_tabs' );
+	add_action( 'admin_init', 'wsdev_member_admin_prevent', 1 );
+
+	// Featured Slider Caption
+	// Function location: /lib/theme-functions.php
+	add_action( 'add_meta_boxes', 'wsdev_add_featured_caption_metabox' );
+	add_action( 'save_post', 'wsdev_save_featured_caption_meta', 1, 2 ); 
+ 
+	// Add custom post types, required meta boxes and required custom functions
+	//
+	// VIDEO CPT
+	// Function location: /lib/cpt/video.php
+	add_action( 'init', 'wsdev_video_posttype' );
+	add_action( 'add_meta_boxes', 'add_video_metaboxes' );
+	add_action( 'save_post', 'wsdev_save_video_meta', 1, 2 ); 
+	add_action( 'before_delete_post', 'wsdev_video_post_delete' );
+	add_filter( 'wp_insert_post_data' , 'wsdev_video_post_title' , '99', 2 );
+	add_action( 'init', 'wsdev_add_video_taxonomy_objects' );
+	add_filter( 'post_row_actions','wsdev_remove_quick_edit', 10, 2 );
+	//
+	// MOCKDRAFT CPT
+	// Function location: /lib/cpt/mockdraft.php
+	add_action( 'init', 'wsdev_mockdrafts_cpt', 0 );
+	add_action( 'add_meta_boxes', 'wsdev_add_mockdraft_metaboxes' );
+	add_action( 'save_post', 'wsdev_save_mockdraft_meta', 1, 2 ); 
+	//
+	// MEMBERARTICLE CPT
+	// Function location: /lib/cpt/memberarticle.php
+	add_action( 'init', 'wsdev_memberarticles_cpt', 0 );
+	//
+	// SCOUTINGNOTE CPT
+	// Function location: /lib/cpt/scoutingnote.php
+	add_action( 'init', 'wsdev_scoutingnotes_cpt', 0 );
+
+	// Plugin customizations
+	// Function location: /lib/plugin-custom.php
+	add_filter( 'wpcf7_form_class_attr', 'wsdev_custom_form_class_attr' );
+	add_action( 'init', 'wsdev_disable_cache' );
+	
+
+
 }
 endif; // wsdev_earl_setup
 
-add_action( 'after_setup_theme', 'wsdev_bootstrapped_setup' );
+add_action( 'after_setup_theme', 'wsdev_earl_setup' );
