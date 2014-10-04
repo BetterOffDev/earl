@@ -20,6 +20,10 @@ function wsdev_earl_setup() {
 	remove_action( 'wp_head', 'wp_generator' );
 	remove_action( 'wp_head', 'wp_shortlink_wp_head' );
 
+	// Display a better title based on the content
+	// Function location: /lib/theme-functions.php
+	add_filter( 'wp_title', 'wsdev_wp_title', 10, 2 );
+
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
 
@@ -54,7 +58,6 @@ function wsdev_earl_setup() {
 	// Custom Admin Area CSS
 	// Function location: /lib/admin-functions.php
 	add_action( 'admin_head', 'wsdev_register_custom_admin_css' );
-
 
 	// Remove default link for images
 	// Function location: /lib/theme-functions.php

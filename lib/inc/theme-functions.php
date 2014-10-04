@@ -28,15 +28,11 @@ function wsdev_imagelink_setup() {
  * Enqueue scripts
  */
 function wsdev_scripts() {
-	// wp_enqueue_style( '_mbbasetheme-style', get_stylesheet_uri() );
+	//wp_enqueue_style( 'wsdev-base', get_stylesheet_uri() );
 
-	// wp_enqueue_script( '_mbbasetheme-navigation', get_template_directory_uri() . '/assets/js/vendor/navigation.js', array(), '20120206', true );
+	wp_enqueue_style( 'db-styles', get_template_directory_uri() . '/dist/styles/style.min.css' );
 
-	// wp_enqueue_script( '_mbbasetheme-skip-link-focus-fix', get_template_directory_uri() . '/assets/js/vendor/skip-link-focus-fix.js', array(), '20130115', true );
-
-	// if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-	// 	wp_enqueue_script( 'comment-reply' );
-	// }
+	wp_enqueue_script( 'db-scripts', get_template_directory_uri() . '/dist/js/main.min.js', array('jquery'), NULL, true );
 
 	// if ( !is_admin() ) {
 	// 	wp_enqueue_script( 'jquery' );
@@ -251,4 +247,34 @@ function wsdev_main_image() {
 function wsdev_redirect_after_comment($location) {
 	return $_SERVER["HTTP_REFERER"];
 }
- 
+
+/**
+ * Filters wp_title to print a neat <title> tag based on what is being viewed.
+ *
+ * @param string $title Default title text for current view.
+ * @param string $sep Optional separator.
+ * @return string The filtered title.
+ */
+function wsdev_wp_title( $title, $sep ) {
+	if ( is_feed() ) {
+		return $title;
+	}
+
+	global $page, $paged;
+
+	// Add the blog name
+	$title .= get_bloginfo( 'name', 'display' );
+
+	// Add the blog description for the home/front page.
+	$site_description = get_bloginfo( 'description', 'display' );
+	if ( $site_description && ( is_home() || is_front_page() ) ) {
+		$title .= " $sep $site_description";
+	}
+
+	// Add a page number if necessary:
+	if ( ( $paged >= 2 || $page >= 2 ) && ! is_404() ) {
+		$title .= " $sep " . sprintf( __( 'Page %s', '_mbbasetheme' ), max( $paged, $page ) );
+	}
+
+	return $title;
+}

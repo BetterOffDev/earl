@@ -1,3 +1,6 @@
+/*
+** Import core Bootstrap and FontAwesome styles
+*/
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -8875,3 +8878,7 @@ button.close {
 .fa-meanpath:before {
   content: "\f20c";
 }
+
+/*
+** Start importing other theme style partials here
+*/

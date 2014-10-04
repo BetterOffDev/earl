@@ -20,7 +20,7 @@ function wsdev_custom_form_class_attr( $class ) {
  * W3 Total Cache
  * Disable caching for particular pages/posts
  */
-function disable_cache() {
+function wsdev_disable_cache() {
  	if (is_single('2014-nfl-draft-instant-reaction')) {
   		define('DONOTCDN', true);
  	}

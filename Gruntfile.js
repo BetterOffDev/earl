@@ -76,7 +76,7 @@ module.exports = function(grunt) {
                 files: {
                     'dist/js/main.min.js': [
                         'assets/js/**/*.js',
-                        'assets/bootstrap-sass-official/assets/javascripts/*.js'
+                        'assets/bootstrap-sass-official/assets/javascripts/bootstrap.js'
                     ]
                 }
             }
