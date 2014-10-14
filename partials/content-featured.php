@@ -1,7 +1,7 @@
 <?php
 	$args = array('posts_per_page' => 3,
                   'category_name' => 'featured',
-                  'post_type' => array('post', 'memberarticles', 'mockdrafts', 'videos') );
+                  'post_type' => array('post', 'memberarticles', 'mockdrafts') );
     $featured = new WP_Query($args);
     $i = 0;
     global $featured_posts;

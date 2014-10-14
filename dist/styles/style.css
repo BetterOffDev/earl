@@ -8937,6 +8937,11 @@ a:hover {
   padding: 10px 0;
 }
 
+@media (min-width: 500px) {
+  .row.visible-xs.ad.ad-sq, .row.visible-xs.ad-sq {
+    margin-top: 50px;
+  }
+}
 /**
  * Primary Navigation Menu
  */
@@ -9026,8 +9031,17 @@ footer {
 /**
  * Front Page
  */
+h1.home-section-title {
+  margin-bottom: 10px;
+  font-size: 24px;
+  border-bottom: 1px solid #DDDDDD;
+}
+
 .recent-videos {
   margin-bottom: 20px;
+}
+.recent-videos h1.home-section-title {
+  margin-top: 0;
 }
 .recent-videos .video-thumb-container {
   width: 100%;
@@ -9035,6 +9049,9 @@ footer {
 
 .featured h1 {
   margin: 0;
+}
+.featured h1.home-section-title {
+  margin-bottom: 10px;
 }
 .featured h2 {
   margin: 0;
@@ -9103,7 +9120,8 @@ footer {
   }
 
   .sub-featured .row {
-    min-height: 115px;
+    height: 115px;
+    overflow: hidden;
   }
   .sub-featured .row h4 {
     font-size: 18px;

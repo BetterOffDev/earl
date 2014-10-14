@@ -6,7 +6,7 @@
 ?>
 	<?php 
 		?>
-		<div class="col-md-2">
+		<div class="col-xs-6 col-md-2">
 			<a class="video-thumb-container" href="<?php the_permalink(); ?>">
 				<?php $img_src = get_youtube_video_thumb( get_post_meta( get_the_ID(), '_video_id', true) ); ?>
 				<img src="<?php echo $img_src; ?>" class="img-responsive" />
