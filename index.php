@@ -6,7 +6,11 @@
  */
 
 get_header(); ?>
+	<div class="row">
+		<div class="col-sm-12">
+			<h1>index</h1>
+		</div>
+	</div>
 
-	<h1>Index</h1>
 
 <?php get_footer(); ?>

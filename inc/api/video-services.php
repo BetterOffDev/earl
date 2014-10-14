@@ -7,6 +7,18 @@
  */
 
 /**
+ * Universal
+ */
+/********************* CREATE THIS *******************/
+// hook into the_post_thumbnail
+// function get_video_thumbnail() {
+
+// }
+// function embed_video($id, $host) {
+
+// }
+
+/**
  * YouTube
  */
 
