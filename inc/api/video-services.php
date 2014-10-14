@@ -17,18 +17,23 @@
 // }
 
 // Video thumbnail
-function get_youtube_video_thumb($video_id) {
+function get_youtube_video_thumb($id) {
 
-	$images = json_decode(file_get_contents("http://gdata.youtube.com/feeds/api/videos/".$video_id."?v=2&alt=json"), true);
+	$images = json_decode(file_get_contents("http://gdata.youtube.com/feeds/api/videos/".$id."?v=2&alt=json"), true);
 	$images = $images['entry']['media$group']['media$thumbnail'];
 	$image  = $images[count($images)-4]['url'];
 
-	$maxurl = "http://i.ytimg.com/vi/".$video_id."/maxresdefault.jpg";
+    $mqurl = "http://i.ytimg.com/vi/".$id."/mqdefault.jpg";
+	$maxurl = "http://i.ytimg.com/vi/".$id."/maxresdefault.jpg";
 	$max    = get_headers($maxurl);
 
 	if (substr($max[0], 9, 3) !== '404') {
 	    $image = $maxurl;   
 	}
+
+    else {
+        $image = $mqurl;
+    }
 
 	return $image;
 }
