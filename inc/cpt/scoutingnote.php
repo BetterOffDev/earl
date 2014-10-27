@@ -83,4 +83,3 @@ function custom_notes_comments($comment, $args, $depth) {
     </li>
 	<?php
 }
-

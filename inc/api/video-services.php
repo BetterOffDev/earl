@@ -9,11 +9,26 @@
 /**
  * Universal
  */
-/********************* CREATE THIS *******************/
-// hook into the_post_thumbnail
-// function get_video_thumbnail() {
 
-// }
+// Get the video thumbnail src
+// @params $size ( small, medium, large )
+function get_video_thumb($size) {
+    $video_host = get_post_meta( get_the_ID(), '_video_host', true);
+    $video_id = get_post_meta( get_the_ID(), '_video_id', true);
+    switch($video_host) {
+        case 'youtube':
+            return get_youtube_video_thumb($video_id);
+            break;
+        case 'vimeo':
+            return get_vimeo_video_thumb($video_id, $size);
+            break;
+        case 'dailymotion':
+            return get_dailymotion_video_thumb($video_id, $size);
+        default:
+            return get_youtube_video_thumb($video_id);
+            break;
+    }
+}
 // function embed_video($id, $host) {
 
 // }
@@ -32,20 +47,28 @@
 function get_youtube_video_thumb($id) {
 
 	$images = json_decode(file_get_contents("http://gdata.youtube.com/feeds/api/videos/".$id."?v=2&alt=json"), true);
-	$images = $images['entry']['media$group']['media$thumbnail'];
-	$image  = $images[count($images)-4]['url'];
+    
+    if ($images) {
+        $images = $images['entry']['media$group']['media$thumbnail'];
+        $image  = $images[count($images)-4]['url'];
 
-    $mqurl = "http://i.ytimg.com/vi/".$id."/mqdefault.jpg";
-	$maxurl = "http://i.ytimg.com/vi/".$id."/maxresdefault.jpg";
-	$max    = get_headers($maxurl);
+        $mqurl = "http://i.ytimg.com/vi/".$id."/mqdefault.jpg";
+        $maxurl = "http://i.ytimg.com/vi/".$id."/maxresdefault.jpg";
+        $max    = get_headers($maxurl);
 
-	if (substr($max[0], 9, 3) !== '404') {
-	    $image = $maxurl;   
-	}
+        if (substr($max[0], 9, 3) !== '404') {
+            $image = $maxurl;   
+        }
+
+        else {
+            $image = $mqurl;
+        }
+    }
 
     else {
-        $image = $mqurl;
+        $image = 'http://fillmurray.com/300/200';
     }
+	
 
 	return $image;
 }
@@ -55,15 +78,9 @@ function get_youtube_video_thumb($id) {
  */
 
 // Embed video
-function embed_vimeo_video($id, $width, $height) {
-	if ( $width == '' ) {
-		$width = 640;
-	}
-	if ( $height == '' ) {
-		$height = 380;
-	}
-
-	$embed_string = '<iframe src="//player.vimeo.com/video/'.$id.'?title=0&portrait=0&byline=0" width="'.$width.'" height="'.$height.'" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+function embed_vimeo_video($id) {
+	
+	$embed_string = '<iframe src="//player.vimeo.com/video/'.$id.'?title=0&portrait=0&byline=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
 
 	echo $embed_string;
 }
@@ -86,7 +103,14 @@ function get_vimeo_video_thumb($id, $size) {
     		$size = 'thumbnail_medium';
     		break;
     }
-    return $data[0]->$size;
+
+    if ( !$data[0]->$size ) {
+        return 'http://fillmurray.com/300/200';
+    }
+    else {
+        return $data[0]->$size;
+    }
+    
 }
 
 /**
@@ -94,15 +118,9 @@ function get_vimeo_video_thumb($id, $size) {
  */
 
 // Embed video
-function embed_dailymotion_video($id, $width, $height) {
-	if ( $width == '' ) {
-		$width = 640;
-	}
-	if ( $height == '' ) {
-		$height = 380;
-	}
+function embed_dailymotion_video($id) {
 
-	$embed_string = '<iframe src="http://www.dailymotion.com/embed/video/'.$id.'?html=1&info=0&logo=0&related=0&quality=720" width="'.$width.'" height="'.$height.'" frameborder="0"></iframe>';
+	$embed_string = '<iframe src="http://www.dailymotion.com/embed/video/'.$id.'?html=1&info=0&logo=0&related=0" frameborder="0"></iframe>';
 
 	echo $embed_string;
 }
@@ -125,7 +143,13 @@ function get_dailymotion_video_thumb($id, $size) {
     }
     $data = file_get_contents("https://api.dailymotion.com/video/$id?fields=$size");
     $data = json_decode($data, true);
-   
-    return $data[$size];
+
+    if ( !$data[$size] ) {
+        return 'http://fillmurray.com/300/200';
+    }
+
+    else {
+        return $data[$size];
+    }
    
 }

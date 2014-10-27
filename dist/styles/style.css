@@ -8968,6 +8968,15 @@ a:hover {
   color: #FFFFFF;
 }
 
+#primary-nav .collapse li {
+  padding-top: 30px;
+}
+
+#primary-nav .collapse li a {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 #primary-nav .in li a,
 #primary-nav .collapsing li a {
   text-align: center;

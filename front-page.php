@@ -7,7 +7,7 @@
 
 get_header(); ?>
 	
-	<div class="row recent-videos">
+	<div class="row recent-videos"> 
 		<div class="col-sm-12">
 			<h1 class="home-section-title">Recent Videos</h1>
 		</div>
@@ -51,7 +51,7 @@ get_header(); ?>
 			<h1 class="home-section-title">Spotlight</h1>
 		</div>
 		<?php get_template_part('partials/content', 'sub-featured'); ?>
-		<?php echo do_shortcode('[ajax_load_more post_type="post, mockdrafts, memberarticles" offset="6" posts_per_page="6" transition="fade"]'); ?>
+		<?php echo do_shortcode('[ajax_load_more post_type="post, mockdrafts, memberarticles" offset="6" posts_per_page="6" transition="fade" button_label="Scroll for more"]'); ?>
 	</div>
 	
 	

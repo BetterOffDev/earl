@@ -66,8 +66,10 @@ function wsdev_member_admin_prevent() {
 
 	$user_info = get_userdata($current_user->ID);
 
-	if ( in_array('member', $user_info->roles) && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
-		wp_redirect( site_url() ); 
-		exit;
+	if ( $user_info ) {
+		if ( in_array('member', $user_info->roles) && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
+			wp_redirect( site_url() ); 
+			exit;
+		}
 	}
 }

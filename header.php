@@ -37,7 +37,7 @@
 		        			<span class="sr-only">Toggle navigation</span>
 					        <i class="fa fa-navicon" style="color: white; font-size: 24px;"></i>
 	      				</button>
-	      				<a class="navbar-brand" href="#">
+	      				<a class="navbar-brand" href="<?php bloginfo('url'); ?>">
 	      					<img src="<?php bloginfo('stylesheet_directory'); ?>/dist/img/logo3.png" />
 	      				</a>
 	    			</div>

@@ -7,8 +7,12 @@
 
 get_header(); ?>
 	<div class="row">
-		<div class="col-sm-12">
-			<h1>search</h1>
+		<div class="col-sm-8">
+			<h1>Search</h1>
+		</div>
+
+		<div class="col-sm-4">
+			<?php get_sidebar(); ?>
 		</div>
 	</div>
 

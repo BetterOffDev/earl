@@ -127,13 +127,33 @@ function wsdev_earl_setup() {
  
 	// Add custom post types, required meta boxes and required custom functions
 	//
+	// PLAYER CPT
+	// Function location: /lib/cpt/player.php
+	add_action( 'init', 'wsdev_player_posttype', 0 );
+	add_filter( 'manage_edit-player_columns', 'set_custom_edit_player_columns' );
+	add_action( 'manage_player_posts_custom_column' , 'custom_player_column', 10, 2 );
+	add_filter( 'manage_edit-player_sortable_columns', 'player_sort' );
+	add_filter( 'request', 'school_column_orderby' );
+	add_filter( 'request', 'position_column_orderby' );
+	add_filter( 'request', 'number_videos_column_orderby' );
+	add_filter( 'request', 'draft_class_column_orderby' );
+	add_action( 'do_meta_boxes' , 'remove_player_extra_meta' );
+	add_action( 'do_meta_boxes', 'player_author_box' );
+	add_action( 'do_meta_boxes', 'player_image_box' );
+	add_filter( 'default_hidden_meta_boxes', 'hide_meta_lock', 10, 2 );
+	add_action( 'do_meta_boxes', 'wsdev_remove_comments_meta' );
+	add_action( 'add_meta_boxes', 'add_scouting_report_box', 0 );
+	add_action( 'add_meta_boxes', 'add_player_info_metabox' );
+	add_action( 'save_post', 'save_player_meta', 1, 2 );
+	add_action( 'add_meta_boxes', 'add_combine_metabox' );
+	add_action( 'save_post', 'save_combine_meta', 1, 2) ;
 	// VIDEO CPT
 	// Function location: /lib/cpt/video.php
-	add_action( 'init', 'wsdev_video_posttype' );
+	add_action( 'init', 'wsdev_video_posttype', 0 );
 	add_action( 'add_meta_boxes', 'add_video_metaboxes' );
 	add_action( 'save_post', 'wsdev_save_video_meta', 1, 2 ); 
 	add_action( 'before_delete_post', 'wsdev_video_post_delete' );
-	add_filter( 'wp_insert_post_data' , 'wsdev_video_post_title' , '99', 2 );
+	add_filter( 'wp_insert_post_data' , 'wsdev_video_post_title' , 99, 2 );
 	add_action( 'init', 'wsdev_add_video_taxonomy_objects' );
 	add_filter( 'post_row_actions','wsdev_remove_quick_edit', 10, 2 );
 	//
@@ -162,3 +182,5 @@ function wsdev_earl_setup() {
 endif; // wsdev_earl_setup
 
 add_action( 'after_setup_theme', 'wsdev_earl_setup' );
+
+

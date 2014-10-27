@@ -18,6 +18,21 @@ module.exports = function(grunt) {
             }
         },
 
+        copy: {
+            main: {
+                files: [
+                    // move the fontawesome font files
+                    {
+                        expand: true, 
+                        flatten: true, 
+                        src: ['assets/fontawesome/fonts/**'], 
+                        dest: 'dist/fonts/', 
+                        filter: 'isFile'
+                    },
+                ],
+            },
+        },
+
         // watch for changes and trigger sass, jshint, uglify and livereload
         watch: {
             sass: {
@@ -29,9 +44,10 @@ module.exports = function(grunt) {
                 tasks: ['jshint', 'uglify']
             },
             images: {
-                files: ['assets/images/**/*.{png,jpg,gif}'],
+                files: ['assets/img/*.{png,jpg,gif}'],
                 tasks: ['imagemin']
-            }
+            },
+            files: '**/**.php',
         },
 
         // sass
@@ -128,6 +144,7 @@ module.exports = function(grunt) {
     grunt.renameTask('rsync', 'deploy');
 
     // register task
-    grunt.registerTask('default', ['sass', 'cssmin', 'uglify', 'imagemin', 'watch']);
+    grunt.registerTask('start', ['bower', 'copy']);
+    grunt.registerTask('devel', ['sass', 'cssmin', 'uglify', 'imagemin', 'watch']);
 
 };

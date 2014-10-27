@@ -43,6 +43,7 @@ require get_template_directory() . '/inc/members.php';
 /**
  * Custom post types
  */
+require get_template_directory() . '/inc/cpt/player.php';
 require get_template_directory() . '/inc/cpt/video.php';
 require get_template_directory() . '/inc/cpt/memberarticle.php';
 require get_template_directory() . '/inc/cpt/mockdraft.php';
@@ -58,13 +59,4 @@ require get_template_directory() . '/inc/api/video-services.php';
  */
 require get_template_directory() . '/inc/plugin-custom.php';
 
-
-
-
-
-// Twitter API functions
-
-// short codes & template tags
-
-// ad implementation!!!!
 

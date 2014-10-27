@@ -72,8 +72,9 @@ function wsdev_video_metabox() {
 	<select name="_video_host">
 		<option value="youtube" <?php if ( $video_host == 'youtube' || $video_host == '' ) { echo 'selected="selected"'; } ?>>YouTube</option>
 		<option value="vimeo"<?php if ( $video_host == 'vimeo' ) { echo 'selected="selected"'; } ?>>Vimeo</option>
+		<option value="dailymotion"<?php if ( $video_host == 'dailymotion' ) { echo 'selected="selected"'; } ?>>Daily Motion</option>
 	</select>
-	<h4>YouTube or Vimeo Video ID</h4>
+	<h4>YouTube, Vimeo or DailyMotion Video ID</h4>
 	<input type="text" name="_video_id" value="<?php echo $video_id; ?>" width="200" />
 	<h4>Video Prospect</h4>
 
@@ -133,6 +134,12 @@ function wsdev_video_metabox() {
 
 // Save the metabox data
 function wsdev_save_video_meta($post_ID, $post) {
+
+	$slug = 'video';
+	
+	if ( $slug != $_POST['post_type'] ) {
+        return;
+    }
  
     if ( !wp_verify_nonce( $_POST['video_meta_noncename'], plugin_basename(__FILE__) )) {
     	return $post->ID;
@@ -147,7 +154,6 @@ function wsdev_save_video_meta($post_ID, $post) {
 	$video_meta['_video_opponent'] = $_POST['_video_opponent'];
 	$video_meta['_video_year'] = $_POST['_video_year'];
 	$video_meta['_video_prospect'] = $_POST['_video_prospect'];
-	$video_meta['_video_date'] = $_POST['_video_date'];
 	$video_meta['_video_host'] = $_POST['_video_host'];
 	$new_title = $_POST['_video_prospect']." vs ".$_POST['_video_opponent']." (".$_POST['_video_year'].")";
 
@@ -234,4 +240,3 @@ function wsdev_remove_quick_edit( $actions ) {
 function wsdev_add_video_taxonomy_objects() {
 	register_taxonomy_for_object_type('post_tag', 'video');
 } 
-

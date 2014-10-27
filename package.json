@@ -1,12 +1,13 @@
 {
   "name": "Earl",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "New DB theme built on Bootstrap",
   "main": "Gruntfile.js",
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.5",
     "grunt-bower-task" : "latest",
+    "grunt-contrib-copy" : "latest",
     "grunt-contrib-cssmin": "latest",
     "grunt-contrib-imagemin": "latest",
     "grunt-contrib-jshint": "latest",

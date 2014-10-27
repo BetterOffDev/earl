@@ -33,7 +33,8 @@ function wsdev_mockdrafts_cpt() {
 					'slug'		 	=> '',
 					'with_front'	=> true
 				),
-            'menu_position' => 8
+            'menu_position' => 8,
+            'register_meta_box_cb' => 'wsdev_add_mockdraft_metaboxes'
         )
     );
 }
@@ -50,7 +51,7 @@ function wsdev_mockdraft_metabox() {
     global $post;
  
     echo '<input type="hidden" name="mockdraft_meta_noncename" id="mockdraft_meta_noncename" value="' .
-    wp_create_nonce( plugin_basename(__FILE__) ) . '" />';
+    wp_create_nonce( 'mockdraft_meta_nonce' ) . '" />';
  
 	$original_post = $post;
 
@@ -146,8 +147,19 @@ function wsdev_mockdraft_metabox() {
 }
 
 function wsdev_save_mockdraft_meta($post_ID, $post) {
+
+	$slug = 'mockdrafts';
+	
+	if ( $slug != $_POST['post_type'] ) {
+        return;
+    }
   
-    if ( !wp_verify_nonce( $_POST['mockdraft_meta_noncename'], plugin_basename(__FILE__) )) {
+  	$nonce = null;
+  	if ( $_POST['mockdraft_meta_noncename'] ) {
+  		$nonce = $_POST['mockdraft_meta_noncename'];
+  	}
+	
+    if ( !wp_verify_nonce( $nonce, 'mockdraft_meta_nonce' )) {
     	return $post->ID;
     }
  
@@ -168,7 +180,7 @@ function wsdev_save_mockdraft_meta($post_ID, $post) {
         }
         if(!$value) delete_post_meta($post->ID, $key); 
     }
- 
+
 }
 
 /**
@@ -454,4 +466,3 @@ function custom_mockdraft_comments($comment, $args, $depth) {
     </li>
 	<?php
 }
-
