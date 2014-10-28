@@ -29,19 +29,35 @@ function get_video_thumb($size) {
             break;
     }
 }
-// function embed_video($id, $host) {
 
-// }
+// Embed the video
+function embed_video() {
+    $video_host = get_post_meta( get_the_ID(), '_video_host', true);
+    $video_id = get_post_meta( get_the_ID(), '_video_id', true);
+    switch($video_host) {
+        case 'youtube':
+            return embed_youtube_video($video_id);
+            break;
+        case 'vimeo':
+            return embed_vimeo_video($video_id);
+            break;
+        case 'dailymotion':
+            return embed_dailymotion_video($video_id);
+        default:
+            return embed_youtube_video($video_id);
+            break;
+    }
+}
 
 /**
  * YouTube
  */
 
-/******************* FIX THIS ***********************/
 // Embed video
-// function embed_youtube_video($video_id) {
-
-// }
+function embed_youtube_video($video_id) {
+    $embed_string = '<iframe src="http://www.youtube.com/embed/'.$video_id.'?rel=0&modestbranding=0&showinfo=0&origin=draftbreakdown.com&frameborder="0" allowfullscreen="1"></iframe>';
+    echo $embed_string;
+}
 
 // Video thumbnail
 function get_youtube_video_thumb($id) {

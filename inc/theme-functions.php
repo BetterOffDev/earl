@@ -125,10 +125,10 @@ function wsdev_save_extra_user_profile_fields( $user_id ) {
 		return false; 
 	}
  
-	update_usermeta( $user_id, 'facebook', $_POST['facebook'] );
-	update_usermeta( $user_id, 'twitter', $_POST['twitter'] );
-	update_usermeta( $user_id, 'google', $_POST['google'] );
-	update_usermeta( $user_id, 'youtube', $_POST['youtube'] );
+	update_user_meta( $user_id, 'facebook', $_POST['facebook'] );
+	update_user_meta( $user_id, 'twitter', $_POST['twitter'] );
+	update_user_meta( $user_id, 'google', $_POST['google'] );
+	update_user_meta( $user_id, 'youtube', $_POST['youtube'] );
 
 }
 

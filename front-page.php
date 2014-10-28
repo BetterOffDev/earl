@@ -12,6 +12,9 @@ get_header(); ?>
 			<h1 class="home-section-title">Recent Videos</h1>
 		</div>
 		<?php get_template_part('partials/videos', 'recent'); ?>
+		<div class="col-sm-12">
+			<a style="float: right;" href="<?php bloginfo('url'); ?>/videos">See All <i class="fa fa-plus-square-o"></i></a>
+		</div>
 	</div>
 
 	<div class="row featured">

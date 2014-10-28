@@ -1,7 +1,9 @@
 <?php
-	while (have_posts()) : the_post();
+	while (have_posts()) : the_post(); ?>
  	
- 	echo '<p>'.the_content().'</p>';
+ 	<?php the_content(); ?>
+ 	
 
- 	endwhile;
+<?php 	
+	endwhile;
 ?>
