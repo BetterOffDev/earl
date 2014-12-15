@@ -53,6 +53,19 @@
 	    <script type='text/javascript'>
 	    	googletag.pubads().enableSyncRendering();
 	    </script>
+
+	    <!-- Taboola Ad Script -->
+	    <script type="text/javascript">
+		  	window._taboola = window._taboola || [];
+		  	_taboola.push({home:'auto'});
+		  	!function (e, f, u) {
+		    	e.async = 1;
+		    	e.src = u;
+		    	f.parentNode.insertBefore(e, f);
+		  	}(document.createElement('script'),
+		  	document.getElementsByTagName('script')[0],
+		  	'http://cdn.taboola.com/libtrc/draftbreakdown/loader.js');
+		</script>
 	</head>
 
 	<body <?php body_class(); ?>>

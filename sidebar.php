@@ -15,5 +15,16 @@ get_header(); ?>
 					googletag.display('usmg_ad_nfl.general_football_sports_300x250_2a');
 				</script>
 			</div>
+
+			<div id="taboola-sidebar-thumbnails"></div>
+				<script type="text/javascript">
+  					window._taboola = window._taboola || [];
+	  					_taboola.push({
+					    mode: 'thumbnails-e',
+					    container: 'taboola-sidebar-thumbnails',
+					    placement: 'Sidebar Thumbnails',
+					    target_type: 'mix'
+  					});
+				</script>
 		</div>
 	</div>

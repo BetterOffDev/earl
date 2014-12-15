@@ -25,15 +25,16 @@ get_header(); ?>
 	</div>
 	<div class="row visible-sm visible-md visible-lg ad ad-lh">
 		<div class="col-sm-12">
-			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-			<!-- Horizontal leaderboard -->
-			<ins class="adsbygoogle"
-			     style="display:inline-block;width:728px;height:90px"
-			     data-ad-client="ca-pub-7021861911581046"
-			     data-ad-slot="9568559232"></ins>
-			<script>
-			(adsbygoogle = window.adsbygoogle || []).push({});
-			</script>
+			<div id="taboola-header"></div>
+				<script type="text/javascript">
+  					window._taboola = window._taboola || [];
+  						_taboola.push({
+					    mode: 'thumbnails-a',
+					    container: 'taboola-header',
+					    placement: 'Header',
+					    target_type: 'mix'
+  					});
+				</script>
 		</div>
 	</div>
 	<div class="row visible-xs ad ad-sq">
