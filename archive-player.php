@@ -18,7 +18,7 @@
 			</div>
 			<div class="col-sm-6" style="text-align: right;">
 				
-				<form id="class_form" action="/players/" method="GET">
+				<form id="class_form" action="<?php bloginfo('url'); ?>/players/" method="GET">
 
 					<select id="class_select" name="draft_class" style="margin-top: 5px; width: 75px; float: right;">
 						<option value="2013"<?php if ($draft_class == '2013') echo "selected='selected'"; ?>>2013</option>
@@ -43,25 +43,37 @@
 			    <li><a href="<?php bloginfo('url'); ?>/players/?draft_class=<?php echo $draft_class; ?>&position=OG">OG</a></li>
 			    <li><a href="<?php bloginfo('url'); ?>/players/?draft_class=<?php echo $draft_class; ?>&position=C">C</a></li>
 			    <?php if ( $draft_class >= 2015 ) {
-			    	echo '<li><a href="http://www.draftbreakdown.com/players/?draft_class='.$draft_class.'&position=DL">DL</a></li>';
+			    	?> <li><a href="<?php bloginfo('url'); ?>/players/?draft_class=<?php echo $draft_class; ?>&position=DL">DL</a></li>
+			    	<?php
 			    } ?>
 			    <?php if ( $draft_class >= 2015 ) {
-			    	echo '<li><a href="http://www.draftbreakdown.com/players/?draft_class='.$draft_class.'&position=EDGE">EDGE</a></li>';
+			    	?> <li><a href="<?php bloginfo('url'); ?>/players/?draft_class=<?php echo $draft_class; ?>&position=EDGE">EDGE</a></li>
+			    	<?php
 			    } ?>
 			    <?php if ( $draft_class < 2015 ) {
-			    	echo '<li><a href="http://www.draftbreakdown.com/players/?draft_class='.$draft_class.'&position=DE">DE</a></li>';
+			    	?>
+			    	<li><a href="<?php bloginfo('url'); ?>/players/?draft_class=<?php echo $draft_class; ?>&position=DE">DE</a></li>
+			    	<?php
 			    } ?>
 			    <?php if ( $draft_class < 2015 ) {
-			    	echo '<li><a href="http://www.draftbreakdown.com/players/?draft_class='.$draft_class.'&position=DT">DT</a></li>';
+			    	?>
+			    	<li><a href="<?php bloginfo('url'); ?>/players/?draft_class=<?php echo $draft_class; ?>&position=DT">DT</a></li>
+			    	<?php
 			    } ?>
 			    <?php if ( $draft_class >= 2015 ) {
-			    	echo '<li><a href="http://www.draftbreakdown.com/players/?draft_class='.$draft_class.'&position=LB">LB</a></li>';
+			    	?>
+			    	<li><a href="<?php bloginfo('url'); ?>/players/?draft_class=<?php echo $draft_class; ?>&position=LB">LB</a></li>
+			    	<?php
 			    } ?>
 			    <?php if ( $draft_class < 2015 ) {
-			    	echo '<li><a href="http://www.draftbreakdown.com/players/?draft_class='.$draft_class.'&position=ILB">ILB</a></li>';
+			    	?>
+			    	<li><a href="<?php bloginfo('url'); ?>/players/?draft_class=<?php echo $draft_class; ?>&position=ILB">ILB</a></li>
+			    	<?php
 			    } ?>
 			    <?php if ( $draft_class < 2015 ) {
-			    	echo '<li><a href="http://www.draftbreakdown.com/players/?draft_class='.$draft_class.'&position=OLB">OLB</a></li>';
+			    	?>
+			    	<li><a href="<?php bloginfo('url'); ?>/players/?draft_class=<?php echo $draft_class; ?>&position=OLB">OLB</a></li>
+			    	<?php
 			    } ?>
 			    <li><a href="<?php bloginfo('url'); ?>/players/?draft_class=<?php echo $draft_class; ?>&position=CB">CB</a></li>
 			    <li><a href="<?php bloginfo('url'); ?>/players/?draft_class=<?php echo $draft_class; ?>&position=S">S</a></li>
@@ -91,13 +103,5 @@
 		<?php get_sidebar(); ?>
 	</div>
 </div>
-
-<script type="text/javascript">
-
-	jQuery('#class_select').change(function() {
-		jQuery('#class_form').submit();
-	});
-
-</script>
 
 <?php get_footer(); ?>
