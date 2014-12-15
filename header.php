@@ -44,12 +44,12 @@
 	    			<div class="collapse navbar-collapse" id="primary-nav-collapse">
 	      				<ul class="nav navbar-nav navbar-right">
 	      					<!--<li class="visible-xs visible-sm"><?php get_search_form(); ?></li>-->
-					        <li><a href="#">Prospects</a></li>
-					        <li><a href="#">Videos</a></li>
-					        <li><a href="#">Mock Drafts</a></li>
-					        <li><a href="#">Articles</a></li>
-					        <li><a href="#">Links</a></li>
-					        <li><a href="#">Contact</a></li>
+					        <li><a href="<?php bloginfo('url'); ?>/players">Prospects</a></li>
+					        <li><a href="<?php bloginfo('url'); ?>/video">Videos</a></li>
+					        <li><a href="<?php bloginfo('url'); ?>/category/mock-drafts">Mock Drafts</a></li>
+					        <li><a href="<?php bloginfo('url'); ?>/category/articles">Articles</a></li>
+					        <li><a href="<?php bloginfo('url'); ?>/links">Links</a></li>
+					        <li><a href="<?php bloginfo('url'); ?>/contact">Contact</a></li>
 					        <li class="visible-xs visible-sm social-links">
 					        	<div class="nav-icon-container">
 					        		<a href="http://www.twitter.com/draftbreakdown">

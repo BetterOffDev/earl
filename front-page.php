@@ -54,7 +54,7 @@ get_header(); ?>
 			<h1 class="home-section-title">Spotlight</h1>
 		</div>
 		<?php get_template_part('partials/content', 'sub-featured'); ?>
-		<?php echo do_shortcode('[ajax_load_more post_type="post, mockdrafts, memberarticles" offset="6" posts_per_page="6" transition="fade" button_label="Scroll for more"]'); ?>
+		<?php //echo do_shortcode('[ajax_load_more post_type="post, mockdrafts, memberarticles" offset="6" posts_per_page="6" transition="fade" button_label="Scroll for more"]'); ?>
 	</div>
 	
 	

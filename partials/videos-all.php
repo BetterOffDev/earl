@@ -1,6 +1,20 @@
 <?php
-	$args = array('posts_per_page' => 60,
-                  'post_type' => 'video');
+	if ( isset($_GET['position']) ) {
+
+		$position = $_GET['position'];
+		
+		$args = array('post_type' => 'video',
+						'posts_per_page' => 42,
+						'meta_key' => '_video_position',
+						'meta_value' => $position,
+						'paged' => get_query_var('paged') );
+	}
+	else {
+		$args = array('posts_per_page' => 42,
+                  'post_type' => 'video',
+                  'paged' => get_query_var('paged'));
+	}
+	
     $videos = new WP_Query($args);
     $i = 0;
     echo '<div class="row">';
@@ -24,6 +38,14 @@
 	}
 
 endwhile; 
-wp_reset_query();
+
+?>
+	<div class="row" style="padding: 10px 0; text-align: center;">
+		<?php if(function_exists('wp_pagenavi')) 
+				wp_pagenavi(); 
+		?>
+	</div>
+<?php
+//wp_reset_query();
 	echo '</div>';
 ?>
