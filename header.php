@@ -25,6 +25,34 @@
 			<!--[if lt IE 9]>
 			          <script type='text/javascript' src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
 			<![endif]-->	
+
+		<script type="text/javascript">
+
+	      	var _gaq = _gaq || [];
+	      	_gaq.push(['_setAccount', 'UA-30936458-1']);
+	      	_gaq.push(['_trackPageview']);
+
+	      	(function() {
+		        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	      	})();
+
+	    </script>
+
+	    <!-- New USA Today Ad Script -->
+
+	    <script type='text/javascript'>
+		    (function() {
+			    var useSSL = 'https:' == document.location.protocol;
+			    var src = (useSSL ? 'https:' : 'http:') +
+			    '//www.googletagservices.com/tag/js/gpt.js';
+			    document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+		    })();
+	    </script>
+	    <script type='text/javascript'>
+	    	googletag.pubads().enableSyncRendering();
+	    </script>
 	</head>
 
 	<body <?php body_class(); ?>>
