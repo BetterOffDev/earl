@@ -11,9 +11,27 @@
 		</div><!-- #main_content -->
 	</div><!--#wrap-->
 	<footer>
-		<div class="site-info">
-			<p class="copyright">&copy; <?php echo date( "Y" ); echo " "; bloginfo( 'name' ); ?></p>
+		<div class="site-info container">
+			<p class="copyright">&copy; <?php echo date( "Y" ); echo " "; bloginfo( 'name' ); ?>, LLC.</p>
+			<p class="disclaimer">Draft Breakdown is independently owned and operated and the comments, analysis, scouting reports, or any other information found on this site is soley the opinion of the Draft Breakdown staff. All visitors are requited to adhere to the <a href="/terms-of-use">Terms of Use</a>, <a href="/privacy-policy">Privacy Policy</a> and <a href="/anti-spam-policy">Anti-Spam Policy</a> detailed on this site. For the full disclaimer (including video content disclaimer), please go to our <a href="/disclaimer">Disclaimer</a> page. Partner of USA Today Sports Digital Properties.</p>
 		</div><!-- .site-info -->
+
+		<div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="loginLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+			  		<div class="modal-header">
+				    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				    	<h3 id="loginLabel" class="modal-title">Member Login</h3>
+			  		</div>
+			  		<div class="modal-body">
+			    		<?php login_with_ajax(); ?>
+			  		</div>
+			  		<div class="modal-footer">
+			    		<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
+			  		</div>
+			  	</div>
+			</div>
+		</div>
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 

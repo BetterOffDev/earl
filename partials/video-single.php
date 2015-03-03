@@ -2,7 +2,7 @@
     while (have_posts()) : the_post();
 ?>
 	<h1><?php the_title(); ?></h1>
-	<p>Posted by <?php the_author(); ?> on <?php the_time('M d, Y'); ?></p>
+	<p class="written-by">Posted by <?php the_author(); ?> on <?php the_time('M d, Y'); ?></p>
 <?php
 
 	$video_host = get_post_meta( get_the_ID(), '_video_host', true );

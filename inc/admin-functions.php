@@ -65,7 +65,7 @@ function wsdev_admin_footer_text( $default_text ) {
  * Add bootstrap style to admin area for table display
  */
 function wsdev_register_custom_admin_css() {
-	wp_register_style( 'bootstrap-tables', 'http://www.draftbreakdown.com/wp-content/themes/DB-Delta/bootstrap/css/bootstrap-tables.css' );
+	wp_register_style( 'bootstrap-tables', get_template_directory_uri().'/assets/bootstrap-sass-official/assets/stylesheets/bootstrap-tables.css' );
 	wp_enqueue_style( 'bootstrap-tables' );
 }
 

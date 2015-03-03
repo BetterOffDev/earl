@@ -15,8 +15,6 @@
 
 	global $draft_class;
 	global $position;
-
-	echo '<h1>In Table '.$draft_class.'</h1>';
 	
 	$args = array(	'post_type' => 'player',
 					'posts_per_archive_page' => -1,
@@ -45,7 +43,7 @@
 
 		}
 
-		$striped = 'class="error"';
+		$striped = 'class="bg-danger"';
 
 		if ( $i % 2 == 0 ) {
 			$striped = '';

@@ -30,9 +30,9 @@ function wsdev_memberarticles_cpt() {
             'taxonomies' => array('category'),
             'capability_type' => 'post',
             'rewrite'         => array(
-					'slug'		 	=> '',
-					'with_front'	=> true
-				),
+                    'slug'          => '',
+                    'with_front'    => true
+                ),
             'menu_position' => 9
         )
     );
@@ -66,5 +66,5 @@ function custom_member_article_comments($comment, $args, $depth) {
          </div>
      </div><!-- #comment-ID -->
     </li>
-	<?php
+    <?php
 }

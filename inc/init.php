@@ -94,7 +94,7 @@ function wsdev_earl_setup() {
 
 	// Author page issues
 	// Function location: /lib/theme-functions.php
-	add_action( 'pre_get_posts', 'wsdev_custom_post_author_archive' );
+	//add_action( 'pre_get_posts', 'wsdev_custom_post_author_archive' );
 
 	// Custom query variables
 	// Function location: /lib/theme-functions.php
@@ -116,8 +116,8 @@ function wsdev_earl_setup() {
 	// Member functions
 	// Function location: /lib/members.php
 	add_action( 'init', 'wsdev_add_member_role' );
-	add_filter( 'media_view_strings', 'wsdev_member_media_view_strings' );
-	add_filter( 'media_upload_tabs', 'wsdev_member_media_view_tabs' );
+	add_filter( 'media_view_strings', 'wsdev_member_media_view_strings', 99 );
+	add_filter( 'media_upload_tabs', 'wsdev_member_media_view_tabs', 99 );
 	add_action( 'admin_init', 'wsdev_member_admin_prevent', 1 );
 
 	// Featured Slider Caption
@@ -161,7 +161,7 @@ function wsdev_earl_setup() {
 	// Function location: /lib/cpt/mockdraft.php
 	add_action( 'init', 'wsdev_mockdrafts_cpt', 0 );
 	add_action( 'add_meta_boxes', 'wsdev_add_mockdraft_metaboxes' );
-	add_action( 'save_post', 'wsdev_save_mockdraft_meta', 1, 2 ); 
+	add_action( 'save_post', 'wsdev_save_mockdraft_meta', 1, 2 );
 	//
 	// MEMBERARTICLE CPT
 	// Function location: /lib/cpt/memberarticle.php
@@ -175,7 +175,6 @@ function wsdev_earl_setup() {
 	// Function location: /lib/plugin-custom.php
 	add_filter( 'wpcf7_form_class_attr', 'wsdev_custom_form_class_attr' );
 	add_action( 'init', 'wsdev_disable_cache' );
-	
 
 
 }

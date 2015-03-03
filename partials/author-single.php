@@ -6,20 +6,7 @@
 	<div class="row-fluid">
 		<div class="span2"><?php 
 				
-				$credentials = null;
-				get_template_part('creds', 'twitterapi');
-
-				$twitter_name = get_the_author_meta('twitter', $author_id);
-				
-				$twitter_api = new Wp_Twitter_Api( $credentials );
-
-				$query = 'screen_name='.$twitter_name;
-				$args = array(
-				  'type' => 'users/show'
-				);
-				$twitter_result = $twitter_api->query( $query, $args ); 
-				
-				$twitter_img_url = str_replace( '_normal', '', $twitter_result->profile_image_url );
+				$twitter_img_url = get_twitter_avatar( get_the_author_meta('twitter', $author_id) );
 
 			?>
 			<img class="author-photo" src="<?php echo $twitter_img_url;?>" />
@@ -56,15 +43,7 @@
 					} 
 					elseif ( get_post_type() == 'video' ) {
 					$video_id = get_post_meta( get_the_ID(), '_video_id', true);
-					$video_host = get_post_meta( get_the_ID(), '_video_host', true);
-
-					if ( $video_host == 'youtube' ) {
-						//$video_thumb_src = 'http://img.youtube.com/vi/'.$related_video_id.'/mqdefault.jpg';
-						$video_thumb_src = get_youtube_video_thumb($video_id);
-					}
-					if ( $video_host == 'vimeo' ) {
-						$video_thumb_src = get_vimeo_video_thumb($video_id, 'large');
-					}
+					$video_thumb_src = get_video_thumb( 'medium' );
 					?>
 					<img class="video-thumbnail" src="<?php echo $video_thumb_src; ?>" alt="<?php the_title(); ?>" title="<?php the_title(); ?>" /></a>
 					<?php

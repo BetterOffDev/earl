@@ -37,6 +37,8 @@ function wsdev_mockdrafts_cpt() {
             'register_meta_box_cb' => 'wsdev_add_mockdraft_metaboxes'
         )
     );
+
+	register_taxonomy_for_object_type( 'category', 'mockdrafts' );
 }
 
 /**
@@ -50,9 +52,14 @@ function wsdev_add_mockdraft_metaboxes() {
 function wsdev_mockdraft_metabox() {
     global $post;
  
+    // Noncename needed to verify where the data originated
     echo '<input type="hidden" name="mockdraft_meta_noncename" id="mockdraft_meta_noncename" value="' .
-    wp_create_nonce( 'mockdraft_meta_nonce' ) . '" />';
+    wp_create_nonce( plugin_basename(__FILE__) ) . '" />';
  
+    // Get the data if its already been entered
+
+	
+    
 	$original_post = $post;
 
 	$mock = get_post_meta($post->ID, '_mock', true);
@@ -147,20 +154,10 @@ function wsdev_mockdraft_metabox() {
 }
 
 function wsdev_save_mockdraft_meta($post_ID, $post) {
-
-	$slug = 'mockdrafts';
-	
-	if ( $slug != $_POST['post_type'] ) {
-        return;
-    }
-  
-  	$nonce = null;
-  	if ( $_POST['mockdraft_meta_noncename'] ) {
-  		$nonce = $_POST['mockdraft_meta_noncename'];
-  	}
-	
-    if ( !wp_verify_nonce( $nonce, 'mockdraft_meta_nonce' )) {
-    	return $post->ID;
+ 
+    
+    if ( !wp_verify_nonce( $_POST['mockdraft_meta_noncename'], plugin_basename(__FILE__) )) {
+    return $post->ID;
     }
  
     if ( !current_user_can( 'edit_post', $post->ID ))
@@ -168,8 +165,10 @@ function wsdev_save_mockdraft_meta($post_ID, $post) {
 
     $mockdraft_post_id = $post->ID;
 
+
 	$mockdraft_meta['_mock'] = $_POST['mock'];
    
+ 
     foreach ($mockdraft_meta as $key => $value) { 
         if( $post->post_type == 'revision' ) return; 
         //$value = implode(',', (array)$value); 
@@ -181,6 +180,13 @@ function wsdev_save_mockdraft_meta($post_ID, $post) {
         if(!$value) delete_post_meta($post->ID, $key); 
     }
 
+    // automatically save in mockdrafts category if not already selected
+    global $wpdb;
+	if(!has_term('','category',$mockdraft_post_id)){
+		$cat = array(6);
+		wp_set_object_terms($mockdraft_post_id, $cat, 'category');
+	}
+ 
 }
 
 /**
@@ -400,38 +406,39 @@ function get_team_logo($team) {
  * Get current draft order
  */
 function get_draft_order() {
-	$order = array( '1' => 'OAK',
-					'2' => 'JAX',
-					'3' => 'TEN',
-					'4' => 'CLE',
-					'5' => 'NYJ',
-					'6' => 'WAS',
-					'7' => 'TB',
-					'8' => 'STL',
-					'9' => 'MIN',
-					'10' => 'MIA',
-					'11' => 'DET',
+	$order = array( '1' => 'TB',
+					'2' => 'TEN',
+					'3' => 'JAX',
+					'4' => 'OAK',
+					'5' => 'WAS',
+					'6' => 'NYJ',
+					'7' => 'CHI',
+					'8' => 'ATL',
+					'9' => 'NYG',
+					'10' => 'STL',
+					'11' => 'MIN',
 					'12' => 'CLE',
-					'13' => 'SD',
-					'14' => 'NYG',
-					'15' => 'HOU',
-					'16' => 'DAL',
-					'17' => 'CIN',
-					'18' => 'ATL',
-					'19' => 'ARI',
-					'20' => 'CAR',
-					'21' => 'BAL',
+					'13' => 'NO',
+					'14' => 'MIA',
+					'15' => 'SF',
+					'16' => 'HOU',
+					'17' => 'SD',
+					'18' => 'KC',
+					'19' => 'CLE',
+					'20' => 'PHI',
+					'21' => 'CIN',
 					'22' => 'PIT',
-					'23' => 'PHI',
-					'24' => 'NO',
-					'25' => 'KC',
-					'26' => 'IND',
-					'27' => 'CHI',
-					'28' => 'GB',
-					'29' => 'SF',
-					'30' => 'NE',
-					'31' => 'DEN',
-					'32' => 'SEA');
+					'23' => 'DET',
+					'24' => 'ARI',
+					'25' => 'CAR',
+					'26' => 'BAL',
+					'27' => 'DAL',
+					'28' => 'DEN',
+					'29' => 'IND',
+					'30' => 'GB',
+					'31' => 'SEA',
+					'32' => 'NE');
+
 	return $order;
 }
 

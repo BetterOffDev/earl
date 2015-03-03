@@ -1,8 +1,9 @@
 <?php
 	global $featured_posts;
 	$args = array('posts_per_page' => 6,
-				  'offset' => 6,
-                  'post_type' => array('post', 'memberarticles', 'mockdrafts', 'video'),
+				  'offset' => 1,
+                  'post_type' => array('post', 'memberarticles', 'mockdrafts'),
+                  'cat' => 6,
                   'post__not_in' => $featured_posts );
     $featured = new WP_Query($args);
     $i = 0;
@@ -15,12 +16,15 @@
 				<div class="col-xs-5 col-sm-4">
 					<a href="<?php the_permalink(); ?>">
 						<?php 
-							if ( get_post_type() == 'video' ) {
+							if ( has_post_thumbnail() ) {
+								the_post_thumbnail( 'full', array( 'class' => 'img-responsive' ) );
+							}
+							elseif ( get_post_type() == 'video' ) {
 								$img_src = get_video_thumb( 'large' );
 								echo '<img src="'.$img_src.'" class="img-responsive" />';
 							}
 							else {
-								the_post_thumbnail( 'full', array( 'class' => 'img-responsive' ) ); 
+								 echo wsdev_main_image('default-img-md img-responsive');
 							}
 							
 						?>
@@ -36,27 +40,3 @@
 
 <?php endwhile; ?>
 
-	<div class="col-sm-12 visible-sm visible-md visible-lg ad ad-lh">
-		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<!-- Horizontal leaderboard -->
-		<ins class="adsbygoogle"
-		     style="display:inline-block;width:728px;height:90px"
-		     data-ad-client="ca-pub-7021861911581046"
-		     data-ad-slot="9568559232"></ins>
-		<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
-	</div>
-
-
-	<div class="col-sm-12 visible-xs ad ad-sq">
-		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-			<!-- Mobile 300x250 -->
-			<ins class="adsbygoogle"
-		     style="display:inline-block;width:300px;height:250px"
-		     data-ad-client="ca-pub-7021861911581046"
-		     data-ad-slot="1528285636"></ins>
-		<script>
-			(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
-	</div>

@@ -4,6 +4,9 @@
 @import "../bootstrap-sass-official/assets/stylesheets/_bootstrap";
 @import "../bootstrap-sass-official/assets/stylesheets/_bootstrap-sprockets";
 @import "../fontawesome/scss/font-awesome";
+@import "../jquery-ui/jquery-ui";
+@import "../jquery-ui/jquery-ui-structure";
+@import "../jquery-ui/jquery-ui-theme";
 /*
 ** Start importing other theme style partials here
 */
@@ -14,3 +17,20 @@
 @import "partials/_footer";
 @import "partials/_front-page";
 @import "partials/_videos";
+@import "partials/_pagination";
+@import "partials/_tables";
+@import "partials/_single";
+@import "partials/_listings";
+@import "partials/_players";
+@import "partials/_sidebar";
+@import "partials/_author";
+@import "partials/_members";
+@import "partials/_modals";
+@import "partials/_forms";
+@import "partials/_scouting-notes";
+@import "partials/_buddypress";
+@import "partials/_media-uploader";
+@import "partials/_mockdrafts";
+@import "partials/_comments";
+@import "partials/_embeds";
+@import "partials/_plugins";

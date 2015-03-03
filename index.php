@@ -7,7 +7,7 @@
 
 get_header(); ?>
 	<div class="row">
-		<div class="col-sm-8">
+		<div class="col-sm-8 main-col">
 			<h1>Index</h1>
 		</div>
 

@@ -11,16 +11,16 @@
 
 ?>
 <div class="row">
-	<div class="col-sm-8">
+	<div class="col-sm-8 main-col">
 		<div class="row-fluid" style="padding-top: 10px;">
 			<div class="col-sm-6">
-				<h1 style="font-size: 24px; line-height: 16px;"><?php echo $title; ?></h1>
+				<h1 class="listing-page"><?php echo $title; ?></h1>
 			</div>
 			<div class="col-sm-6" style="text-align: right;">
 				
 				<form id="class_form" action="<?php bloginfo('url'); ?>/players/" method="GET">
 
-					<select id="class_select" name="draft_class" style="margin-top: 5px; width: 75px; float: right;">
+					<select class="form-control" id="class_select" name="draft_class" style="margin-top: 5px; width: 85px; float: right;">
 						<option value="2013"<?php if ($draft_class == '2013') echo "selected='selected'"; ?>>2013</option>
 						<option value="2014"<?php if ($draft_class == '2014') echo "selected='selected'"; ?>>2014</option>
 						<option value="2015"<?php if ($draft_class == '2015') echo "selected='selected'"; ?>>2015</option>
@@ -99,7 +99,7 @@
 	</div>
 
 
-	<div class="col-sm-4">
+	<div class="col-sm-4 sidebar">
 		<?php get_sidebar(); ?>
 	</div>
 </div>

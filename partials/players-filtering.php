@@ -136,6 +136,4 @@
 		$draft_class = '2015';
 	}
 
-	echo '<h1>'.$draft_class.'</h1>';
-
 ?>

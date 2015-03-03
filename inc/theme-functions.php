@@ -69,11 +69,12 @@ function wsdev_remove_more_jump_link( $link ) {
 function wsdev_search_form( $form ) {
 
     $form = '<form class="form-search" role="search" method="get" id="searchform" action="' . home_url( '/' ) . '" >
-    <div class="input-append home-search" style="width: 80%; margin: 0 30px auto auto;">
-    <input type="text" id="appendedInputButton" class="input-block-level" placeholder="Search..." value="' . get_search_query() . '" name="s" />
-    <button type="submit" class="btn" id="searchsubmit"><i class="icon-search"></i></button>
-    </div>
-    </form>';
+      <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search..."value="' . get_search_query() . '" name="s" />
+      <span class="input-group-btn">
+        <button style="height: 34px" class="btn btn-default" id="searchsubmit" type="submit"><i class="fa fa-search"></i></button>
+      </span>
+    </div></form>';
 
     return $form;
 }
@@ -137,7 +138,7 @@ function wsdev_save_extra_user_profile_fields( $user_id ) {
  */
 function wsdev_custom_post_author_archive( &$query ) {
 	if ( $query->is_author )
-		$query->set( 'post_type', array( 'post', 'video' ));
+		$query->set( 'post_type', array( 'post', 'video', 'scoutingnotes', 'memberarticles', 'mockdrafts' ));
 	remove_action( 'pre_get_posts', 'custom_post_author_archive' );
 }
 
@@ -162,7 +163,8 @@ function wsdev_get_custom_cat_template($single_template) {
     global $post;
  
     if ( in_category( 'no-sidebar' )) {
-        $single_template = dirname( __FILE__ ) . '/no-sidebar-template.php';
+        // $single_template = dirname( __FILE__ ) . '/no-sidebar-template.php';
+        $single_template = get_stylesheet_directory() . '/no-sidebar-template.php';
     }
     
     return $single_template;
@@ -220,25 +222,112 @@ function wsdev_save_featured_caption_meta($post_ID, $post) {
  * Featured Image setting
  * If no featured image, make first image in post featured. If no image, use a default image
  */
-function wsdev_main_image() {
-	$files = get_children('post_parent='.get_the_ID().'&post_type=attachment&post_mime_type=image&order=desc');
-  	if ($files) {
-	    $keys = array_reverse(array_keys($files));
-	    $j = 0;
-	    $num = $keys[$j];
-	    $image = wp_get_attachment_image($num, 'large', true);
-	    $imagepieces = explode('"', $image);
-	    $imagepath = $imagepieces[1];
-	    $main = wp_get_attachment_url($num);
-		$template = get_template_directory();
-		$the_title = get_the_title();
-		
-		echo "<img src='$main' alt='$the_title' class='frame' />";
-  	}
+function wsdev_main_image($class = '') {
 
-  	else {
-    	echo '<img src="'.get_bloginfo('template_directory').'/img/default_thumb.png" alt="'.get_the_title().'" />';
-    }
+  		$post_type = get_post_type( get_the_ID() );
+  		$author = get_the_author_meta( 'ID' );
+  		$author_data = get_userdata( $author );
+  		$author_role = implode(', ', $author_data->roles);
+
+  		switch($post_type) {
+
+  			case 'mockdrafts':
+  				if ( $author_role == 'member' ) {
+  					echo '<img src="'.get_bloginfo('template_directory').'/dist/img/member-mock-default.png" alt="'.get_the_title().'" class="'.$class.'"/>';
+  				}
+  				else {
+  					$files = get_children('post_parent='.get_the_ID().'&post_type=attachment&post_mime_type=image&order=desc');
+				  	if ($files) {
+					    $keys = array_reverse(array_keys($files));
+					    $j = 0;
+					    $num = $keys[$j];
+					    $image = wp_get_attachment_image($num, 'large', true);
+					    $imagepieces = explode('"', $image);
+					    $imagepath = $imagepieces[1];
+					    $main = wp_get_attachment_url($num);
+						$template = get_template_directory();
+						$the_title = get_the_title();
+						
+						echo "<img src='$main' alt='$the_title' class='frame' />";
+				  	}
+				  	else {
+	  					echo '<img src="'.get_bloginfo('template_directory').'/dist/img/default_thumb.png" alt="'.get_the_title().'" class="'.$class.'"/>';
+	  				}
+  				}
+  				break;
+
+  			case 'scoutingnotes':
+  				if ( $author_role == 'member' ) {
+  					echo '<img src="'.get_bloginfo('template_directory').'/dist/img/member-scouting-note-default.png" alt="'.get_the_title().'" class="'.$class.'"/>';
+  				}
+  				else {
+  					$files = get_children('post_parent='.get_the_ID().'&post_type=attachment&post_mime_type=image&order=desc');
+				  	if ($files) {
+					    $keys = array_reverse(array_keys($files));
+					    $j = 0;
+					    $num = $keys[$j];
+					    $image = wp_get_attachment_image($num, 'large', true);
+					    $imagepieces = explode('"', $image);
+					    $imagepath = $imagepieces[1];
+					    $main = wp_get_attachment_url($num);
+						$template = get_template_directory();
+						$the_title = get_the_title();
+						
+						echo "<img src='$main' alt='$the_title' class='frame' />";
+				  	}
+				  	else {
+	  					echo '<img src="'.get_bloginfo('template_directory').'/dist/img/staff-scouting-note-default.png" alt="'.get_the_title().'" class="'.$class.'"/>';
+	  				}
+  				}
+  				break;
+
+  			case 'memberarticles':
+  				if ( $author_role == 'member' ) {
+  					echo '<img src="'.get_bloginfo('template_directory').'/dist/img/member-article-default.png" alt="'.get_the_title().'" class="'.$class.'"/>';
+  				}
+  				else {
+  					$files = get_children('post_parent='.get_the_ID().'&post_type=attachment&post_mime_type=image&order=desc');
+				  	if ($files) {
+					    $keys = array_reverse(array_keys($files));
+					    $j = 0;
+					    $num = $keys[$j];
+					    $image = wp_get_attachment_image($num, 'large', true);
+					    $imagepieces = explode('"', $image);
+					    $imagepath = $imagepieces[1];
+					    $main = wp_get_attachment_url($num);
+						$template = get_template_directory();
+						$the_title = get_the_title();
+						
+						echo "<img src='$main' alt='$the_title' class='frame' />";
+				  	}
+				  	else {
+	  					echo '<img src="'.get_bloginfo('template_directory').'/dist/img/default_thumb.png" alt="'.get_the_title().'" class="'.$class.'"/>';
+	  				}
+  				}
+  				break;
+
+  			default:
+  				$files = get_children('post_parent='.get_the_ID().'&post_type=attachment&post_mime_type=image&order=desc');
+			  	if ($files) {
+				    $keys = array_reverse(array_keys($files));
+				    $j = 0;
+				    $num = $keys[$j];
+				    $image = wp_get_attachment_image($num, 'large', true);
+				    $imagepieces = explode('"', $image);
+				    $imagepath = $imagepieces[1];
+				    $main = wp_get_attachment_url($num);
+					$template = get_template_directory();
+					$the_title = get_the_title();
+					
+					echo "<img src='$main' alt='$the_title' class='frame' />";
+			  	}
+			  	else {
+  					echo '<img src="'.get_bloginfo('template_directory').'/dist/img/default_thumb.png" alt="'.get_the_title().'" class="'.$class.'"/>';
+  				}
+  				break;
+  		}
+  		
+
 }
 
 /**

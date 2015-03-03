@@ -92,7 +92,8 @@ module.exports = function(grunt) {
                 files: {
                     'dist/js/main.min.js': [
                         'assets/js/**/*.js',
-                        'assets/bootstrap-sass-official/assets/javascripts/bootstrap.js'
+                        'assets/bootstrap-sass-official/assets/javascripts/bootstrap.js',
+                        'assets/jquery-ui/jquery-ui.js'
                     ]
                 }
             }

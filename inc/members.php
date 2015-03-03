@@ -17,7 +17,7 @@ function wsdev_add_member_role() {
 										'edit_published_post' => true,
 										'delete_published_post' => true,
 										'publish_post' => true,
-										'upload_files' => true,
+										'upload_files' => false,
 										'unfiltered_html' => true
 									) );
 }
@@ -29,15 +29,12 @@ function wsdev_member_media_view_strings( $strings ) {
 	$author_data = get_userdata( get_current_user_id() );
 	$author_role = implode(', ', $author_data->roles);
 	if ( $author_role == 'member' ) {
+		unset( $string['uploadImagesTitle'] );
 		unset( $strings['uploadFilesTitle'] );
 	    unset( $strings['createGalleryTitle'] );
-	    return $strings;
 	}
-
-	else {
-		return $strings;
-	}
-    
+	
+	return $strings;
 }
 
 /**
@@ -48,12 +45,9 @@ function wsdev_member_media_view_tabs($tabs) {
 	$author_role = implode(', ', $author_data->roles);
 	if ( $author_role == 'member' ) {
 		unset($tabs['gallery']);
-		return $tabs;
 	}
 
-	else {
-		return $tabs;
-	}
+	return $tabs;
 	
 }
 
@@ -66,10 +60,8 @@ function wsdev_member_admin_prevent() {
 
 	$user_info = get_userdata($current_user->ID);
 
-	if ( $user_info ) {
-		if ( in_array('member', $user_info->roles) && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
-			wp_redirect( site_url() ); 
-			exit;
-		}
+	if ( in_array('member', $user_info->roles) && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
+		wp_redirect( site_url() ); 
+		exit;
 	}
 }

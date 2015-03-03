@@ -69,6 +69,12 @@
 	</head>
 
 	<body <?php body_class(); ?>>
+
+		<?php
+			// user logged in check
+			$header_logged_in = is_user_logged_in();
+			$header_current_user = wp_get_current_user();
+		?>
 		<div id="wrap">
 			<!-- navigation -->
 			<nav id="primary-nav" class="navbar navbar-inverse" role="navigation">
@@ -82,15 +88,53 @@
 	      					<img src="<?php bloginfo('stylesheet_directory'); ?>/dist/img/logo3.png" />
 	      				</a>
 	    			</div>
+	    			<?php if ( !is_page(251970) ) { 
+	    				?>
 	    			<div class="collapse navbar-collapse" id="primary-nav-collapse">
 	      				<ul class="nav navbar-nav navbar-right">
-	      					<!--<li class="visible-xs visible-sm"><?php get_search_form(); ?></li>-->
-					        <li><a href="<?php bloginfo('url'); ?>/players">Prospects</a></li>
-					        <li><a href="<?php bloginfo('url'); ?>/video">Videos</a></li>
-					        <li><a href="<?php bloginfo('url'); ?>/category/mock-drafts">Mock Drafts</a></li>
-					        <li><a href="<?php bloginfo('url'); ?>/category/articles">Articles</a></li>
-					        <li><a href="<?php bloginfo('url'); ?>/links">Links</a></li>
+					        <li class="dropdown">
+	          					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Videos <span class="caret"></span></a>
+	          					<ul class="dropdown-menu" role="menu">
+						            <li><a href="<?php bloginfo('url'); ?>/video">Latest Videos</a></li>
+						            <li><a href="<?php bloginfo('url'); ?>/players">Prospects List</a></li>
+						            <li><a href="<?php bloginfo('url'); ?>/scoutingnotes">Scouting Notes</a></li>
+	          					</ul>
+	        				</li>
+					        <li class="dropdown">
+	          					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Analysis <span class="caret"></span></a>
+	          					<ul class="dropdown-menu" role="menu">
+						            <li><a href="<?php bloginfo('url'); ?>/category/articles">Articles</a></li>
+						            <li><a href="<?php bloginfo('url'); ?>/category/scoutingreports">Scouting Reports</a></li>
+						            <li><a href="<?php bloginfo('url'); ?>/category/all-star-games">All-Star Games</a></li>
+						            <li><a href="<?php bloginfo('url'); ?>/category/scouting-combine">Scouting Combine</a></li>
+						            <!-- <li><a href="<?php bloginfo('url'); ?>/category/podcasts">Podcasts</a></li> -->
+						            <li><a href="<?php bloginfo('url'); ?>/category/draft-guide">Draft Guide</a></li>
+	          					</ul>
+	        				</li>
+	        				<li><a href="<?php bloginfo('url'); ?>/rankings">Rankings</a></li>
+					        <li><a href="<?php bloginfo('url'); ?>/mockdrafts">Mock Drafts</a></li>
+					        <li><a href="<?php bloginfo('url'); ?>/category/news">Draft News</a></li>
+					        <li><a href="<?php bloginfo('url'); ?>/about">About</a></li>
 					        <li><a href="<?php bloginfo('url'); ?>/contact">Contact</a></li>
+					        <li class="dropdown">
+	          					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i></a>
+	          					<ul class="dropdown-menu" role="menu">
+	          						<?php
+	          							if ( $header_logged_in ) {
+	          								?>
+	          								<li><a href="<?php bloginfo('url'); ?>/member-settings/?username=<?php echo $header_current_user->user_login; ?>">Member Settings</a></li>
+						            		<li><a href="<?php echo wp_logout_url( home_url() ); ?>">Logout</a></li>
+						            		<?php
+	          							}
+	          							else {
+	          								?>
+	          								<li><a data-target="#loginModal" data-toggle="modal" href="">Login</a></li>
+						            		<li><a href="<?php bloginfo('url'); ?>/join">Join</a></li>
+						            		<?php
+	          							}
+	          						?>
+	          					</ul>
+	        				</li>
 					        <li class="visible-xs visible-sm social-links">
 					        	<div class="nav-icon-container">
 					        		<a href="http://www.twitter.com/draftbreakdown">
@@ -125,18 +169,12 @@
 					        		</a>
 					        	</div>
 					        </li>
-					        <!-- <li class="dropdown">
-	          					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-	          					<ul class="dropdown-menu" role="menu">
-						            <li><a href="#">Action</a></li>
-						            <li><a href="#">Another action</a></li>
-						            <li><a href="#">Something else here</a></li>
-						            <li class="divider"></li>
-						            <li><a href="#">Separated link</a></li>
-	          					</ul>
-	        				</li> -->
 	      				</ul>
 	    			</div><!-- /.navbar-collapse -->
+	    			<?php 
+	    				// end if (!is_poge('edit-notes'))
+	    				}
+	    			?>
 	  			</div><!-- /.container-fluid -->
 			</nav>	
 			<!-- start content area -->

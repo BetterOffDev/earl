@@ -22,6 +22,6 @@
 <ul class="breadcrumb">
     <li><a href="<?php bloginfo('url'); ?>/players">Players</a>&nbsp;</li>
     <li><a href="<?php bloginfo('url'); ?>/players?draft_class=<?php echo $player_draft_class; ?>"><?php echo $player_draft_class; ?></a>&nbsp;</li>
-    <li><a href="<?php bloginfo('url'); ?>/players/?position=<?php echo $player_position; ?>"><?php echo $player_position; ?></a>&nbsp;</li>
+    <li><a href="<?php bloginfo('url'); ?>/players/?draft_class=<?php echo $player_draft_class; ?>&position=<?php echo $player_position; ?>"><?php echo $player_position; ?></a>&nbsp;</li>
     <li><a href="<?php bloginfo('url'); ?>/players/<?php echo $player_slug; ?>"><?php echo $player_name; ?></a></li>
 </ul>

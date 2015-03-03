@@ -53,9 +53,11 @@ function add_video_metaboxes() {
 function wsdev_video_metabox() {
     global $post;
  
+    // Noncename needed to verify where the data originated
     echo '<input type="hidden" name="video_meta_noncename" id="video_meta_noncename" value="' .
     wp_create_nonce( plugin_basename(__FILE__) ) . '" />';
  
+    // Get the data if its already been entered
     $video_id = get_post_meta($post->ID, '_video_id', true);
 	$video_opponent = get_post_meta($post->ID, '_video_opponent', true);
 	$video_year = get_post_meta($post->ID, '_video_year', true);
@@ -64,7 +66,9 @@ function wsdev_video_metabox() {
 	$video_position = get_post_meta($post->ID, '_video_position', true);
 	$video_host = get_post_meta($post->ID, '_video_host', true);
 	
-
+	
+    // Echo out the field
+    
 	$original_post = $post;
 
 	?>
@@ -74,7 +78,7 @@ function wsdev_video_metabox() {
 		<option value="vimeo"<?php if ( $video_host == 'vimeo' ) { echo 'selected="selected"'; } ?>>Vimeo</option>
 		<option value="dailymotion"<?php if ( $video_host == 'dailymotion' ) { echo 'selected="selected"'; } ?>>Daily Motion</option>
 	</select>
-	<h4>YouTube, Vimeo or DailyMotion Video ID</h4>
+	<h4>YouTube, Vimeo or Daily Motion Video ID</h4>
 	<input type="text" name="_video_id" value="<?php echo $video_id; ?>" width="200" />
 	<h4>Video Prospect</h4>
 
@@ -95,7 +99,7 @@ function wsdev_video_metabox() {
 	
 	?>
 
-	<option value='<?php echo get_the_ID(); ?>' <?php if ( get_the_ID() == $video_prospect) echo "selected='selected'"; ?>><?php echo get_the_title(); ?></option>
+	<option value='<?php echo get_the_ID(); ?>' <?php if ( get_the_ID() == $video_prospect) echo "selected='selected'"; ?>><?php echo get_the_title(); ?> - <?php echo get_post_meta( get_the_ID(), '_position', true ); ?> - <?php echo get_post_meta( get_the_ID(), '_school', true ); ?></option>
 
 	<?php
 	endwhile; ?>
@@ -127,39 +131,40 @@ function wsdev_video_metabox() {
 			<option <?php if ( $video_year == '2009') echo "selected='selected'"; ?> value="2009">2009</option>
 			<option <?php if ( $video_year == '2008') echo "selected='selected'"; ?> value="2008">2008</option>
 	</select>
-	<!--<p>To do: insert date selector....calendar style?</p>-->
+	<!-- <p>To do: insert date selector....calendar style?</p> -->
 
+	<!-- <p>Modified? <?php echo $post->post_modified; ?></p>
+	<p>Date? <?php echo $post->post_date; ?></p> -->
 	<?php
 }
 
 // Save the metabox data
 function wsdev_save_video_meta($post_ID, $post) {
-
-	$slug = 'video';
-	
-	if ( $slug != $_POST['post_type'] ) {
-        return;
-    }
  
+    
     if ( !wp_verify_nonce( $_POST['video_meta_noncename'], plugin_basename(__FILE__) )) {
-    	return $post->ID;
+    return $post->ID;
     }
  
     if ( !current_user_can( 'edit_post', $post->ID ))
         return $post->ID;
 
-    $video_post_id = $post->ID;
+    	$video_post_id = $post->ID;
+ 
+   
  
     $video_meta['_video_id'] = $_POST['_video_id'];
 	$video_meta['_video_opponent'] = $_POST['_video_opponent'];
 	$video_meta['_video_year'] = $_POST['_video_year'];
 	$video_meta['_video_prospect'] = $_POST['_video_prospect'];
+	$video_meta['_video_date'] = $_POST['_video_date'];
 	$video_meta['_video_host'] = $_POST['_video_host'];
 	$new_title = $_POST['_video_prospect']." vs ".$_POST['_video_opponent']." (".$_POST['_video_year'].")";
 
 	$player_id = $video_meta['_video_prospect'];
 
 	$video_meta['_video_position'] = get_post_meta( $video_meta['_video_prospect'], '_position', true );
+ 
    
  
     foreach ($video_meta as $key => $value) { 
@@ -213,9 +218,12 @@ function wsdev_video_post_title( $data , $postarr ) {
   		$new_title = $player_name." vs ".$_POST['_video_opponent']." (".$_POST['_video_year'].")";
 
 		$new_slug = sanitize_title_with_dashes($new_title);
-  		
+
   		$data['post_title'] = $new_title;
-		$data['post_name'] = $new_slug;
+		
+		$unique_slug = wp_unique_post_slug( $new_slug, $data['ID'], 'publish', 'video', '' );
+
+		$data['post_name'] = $unique_slug;
   	}
   	
   	return $data;

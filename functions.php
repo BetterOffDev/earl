@@ -53,6 +53,7 @@ require get_template_directory() . '/inc/cpt/scoutingnote.php';
  * API functions
  */
 require get_template_directory() . '/inc/api/video-services.php';
+require get_template_directory() . '/inc/api/creds-twitter.php';
 
 /**
  * Plugin customization functions
