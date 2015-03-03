@@ -20,4 +20,5 @@ Additionally, the theme makes full use of the Twitter API as well as GfyCat for 
 #### Releases
 
 * 2/16/15 - Release 1.0.0
-	Initial launch of Earl, replacing the old DB-Delta theme. 
+
+Initial launch of Earl, replacing the old DB-Delta theme. 
