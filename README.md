@@ -8,4 +8,16 @@ Will Spencer ( [@wspencer428](http://twitter.com/wspencer428) )
 
 ## Summary
 
-Theme files for DB version "Earl". Code will be much more modular than before with a lot of automation for building & deploying.
+Earl is the offical WordPress theme for Draft Breakdown, built from my WordPress starter theme, [Bootstrapped](http://www.github.com/wspencer428/bootstrapped). The theme development uses Grunt & Bower and the theme is built with Bootstrap. I kept the theme fully modular in an attempt to make adding features and enhancements even easier. 
+
+In [DB-Delta](http://www.github.com/wspencer428/DB-Delta), I had Player Management handled in a custom plugin I created called [Player Database](http://www.github.com/wspencer428/player-database). Player management is now included as a part of the theme files.
+
+The theme uses APIs from YouTube, Daily Motion and Vimeo to handle video custom post types. I also employed the use of [FitVids](http://www.fitvidsjs.com) to keep the videos fully responsive. 
+
+Additionally, the theme makes full use of the Twitter API as well as GfyCat for gif creation.
+
+
+#### Releases
+
+* 2/16/15 - Release 1.0.0
+    Initial launch of Earl, replacing the old DB-Delta theme. 
