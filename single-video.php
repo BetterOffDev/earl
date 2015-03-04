@@ -12,7 +12,7 @@ get_header(); ?>
 		<div class="col-sm-8 main-col">
 			<?php get_template_part('partials/video', 'breadcrumb'); ?>
 			<?php get_template_part('partials/video', 'single'); ?>
-			<p style="font-size: 11px; font-style: italic;">The videos posted here at Draft Breakdown are not hosted on this server and the original video content is not considered the property of Draft Breakdown. The videos are considered to be used under the "Fair Use Doctrine" of United States Copyright Law, Title 17 U.S. Code Sections 107-118. Videos are used on this site for editorial and educational purposes only and Draft Breakdown and it's staff do not claim ownership of any original video content. Draft Breakdown and it's staff do not use said video clips in advertisements, marketing or for direct financial gain. All video content in each clip is considered owned by the individual broadcast companies.
+			<p style="font-size: 11px; font-style: italic;">The videos posted here at Draft Breakdown are not hosted on this server and the original video content is not considered the property of Draft Breakdown. The videos are considered to be used under the "Fair Use Doctrine" of United States Copyright Law, Title 17 U.S. Code Sections 107-118. Videos are used on this site for editorial and educational purposes only and Draft Breakdown and its staff do not claim ownership of any original video content. Draft Breakdown and its staff do not use said video clips in advertisements, marketing or for direct financial gain. All video content in each clip is considered owned by the individual broadcast companies.
 			</p>
 			<?php include "scouting-notes.php"; ?>
 			<?php get_template_part('partials/videos', 'related'); ?>
