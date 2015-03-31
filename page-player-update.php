@@ -15,7 +15,7 @@ get_header(); ?>
 										'posts_per_page' => -1,
 										'post_status' => 'publish',
 										'meta_key' => '_position',
-										'meta_value' => 'DL' );
+										'meta_value' => 'S' );
 
 						$players = new WP_Query($args);
 
