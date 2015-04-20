@@ -57,7 +57,7 @@ endwhile; endif; ?>
 				</tr>
 			</table>
 				
-			<div class="row" style="text-align: center;">
+			<div class="row player-tabs" style="text-align: center;">
   				<div class="col-xs-4" style="padding-top: 6px;" >
   					<a class="player-links" href="#player-report" data-target="#player-report" data-toggle="tab">Scouting Report</a>
   				</div>

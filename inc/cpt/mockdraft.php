@@ -258,7 +258,7 @@ function mock_team_select() {
 				'Pittsburgh Steelers' => 'PIT',
 				'San Diego Chargers' => 'SD',
 				'San Francisco 49ers' => 'SF',
-				'Seattle Seahwawks' => 'SEA',
+				'New Orleans Saints' => 'NO',
 				'St. Louis Rams' => 'STL',
 				'Tampa Bay Buccaneers' => 'TB',
 				'Tennessee Titans' => 'TEN',

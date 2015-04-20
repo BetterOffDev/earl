@@ -24,6 +24,7 @@
 						<option value="2013"<?php if ($draft_class == '2013') echo "selected='selected'"; ?>>2013</option>
 						<option value="2014"<?php if ($draft_class == '2014') echo "selected='selected'"; ?>>2014</option>
 						<option value="2015"<?php if ($draft_class == '2015') echo "selected='selected'"; ?>>2015</option>
+						<option value="2016"<?php if ($draft_class == '2016') echo "selected='selected'"; ?>>2016</option>
 					</select>
 					<span style="margin-right: 10px; margin-top: 10px; float: right;">Class: </span>
 					<input type="hidden" name="position" value="<?php echo $position; ?>" />

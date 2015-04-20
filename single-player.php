@@ -44,5 +44,33 @@ get_header(); ?>
 		</div>
 	</div>
 
+	<script>
+
+		(function bootstrap_tab_bookmark (selector) { 
+
+			if (selector == undefined) {
+		    	selector = ""; 
+		    }
+		 
+		    /* Automagically jump on good tab based on anchor */
+		    jQuery(document).ready(function() {
+		        url = document.location.href.split('#');
+		        if(url[1] != undefined) {
+		            jQuery(selector + '[href=#'+url[1]+']').tab('show');
+		        }
+		    });
+		 
+		    var update_location = function (event) {
+		        document.location.hash = this.getAttribute("href");
+		    }
+		 
+		    /* Update hash based on tab */
+		    jQuery(selector + "[data-toggle=tab]").click(update_location);
+		    var scrollmem = jQuery('body').scrollTop();
+    		jQuery('html,body').scrollTop(scrollmem);
+		})();
+
+  </script>
+
 
 <?php get_footer(); ?>
