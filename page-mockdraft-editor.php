@@ -224,7 +224,7 @@ if ( !isset($_GET['post']) && isset($_POST['submit']) ) {
 get_header(); ?>
 	<div class="row">
 		<div class="col-sm-8 main-col">
-			
+			<div class="row" style="margin-left: 0; margin-right: 0;">
 			<?php 
                 $teams = mock_team_select();
                 $players = mock_player_select('2015');
@@ -370,6 +370,7 @@ get_header(); ?>
 
                   </form>
                 <?php } //end else for logged_in ?>
+    </div>
                 
       <div class="row" style="text-align: center;">
   			<div class="col-sm-12 visible-sm visible-md visible-lg ad ad-lh">
