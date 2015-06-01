@@ -1,24 +1,61 @@
 <?php
+	global $member;
+
 	if ( isset($_GET['position']) ) {
 
-		$position = $_GET['position'];
 		
-		$args = array('post_type' => 'video',
-						'posts_per_page' => 42,
+
+		$position = $_GET['position'];
+
+		if ($member) {
+			query_posts( array(
+					'post_type' => 'video',
+					'meta_key' => '_video_position',
+					'meta_value' => $position,
+					'posts_per_page' => 42,
+					'paged' => get_query_var('paged'),
+					'author_name' => $member
+					) );
+		}
+
+		else {
+
+			query_posts( array(
+						'post_type' => 'video',
 						'meta_key' => '_video_position',
 						'meta_value' => $position,
-						'paged' => get_query_var('paged') );
+						'posts_per_page' => 42,
+						'paged' => get_query_var('paged'),
+						'author_name' => $member
+						) );
+		}
+		
 	}
 	else {
-		$args = array('posts_per_page' => 42,
-                  'post_type' => 'video',
-                  'paged' => get_query_var('paged'));
+
+		if ($member) {
+			query_posts( array(
+					'post_type' => 'video',
+					'posts_per_page' => 42,
+					'paged' => get_query_var('paged'),
+					'author_name' => $member
+					) );
+		}
+
+		else {
+			query_posts( array(
+					'post_type' => 'video',
+					'posts_per_page' => 42,
+					'paged' => get_query_var('paged')
+					) );
+		}
+		
 	}
 	
-    $videos = new WP_Query($args);
+    //$videos = new WP_Query($args);
     $i = 0;
     echo '<div class="row">';
-    while ($videos->have_posts()) : $videos->the_post();
+    if(have_posts()) : while (have_posts()) : the_post();
 ?>
 	<?php 
 		?>
@@ -38,7 +75,7 @@
 		$i = 0;
 	}
 
-endwhile; 
+endwhile; endif;
 
 ?>
 	<div class="row" style="padding: 10px 0; text-align: center;">

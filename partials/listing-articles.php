@@ -1,6 +1,6 @@
 <?php 
 
-	if ( $_GET['member'] ) {
+	if ( isset($_GET['member']) ) {
 		$member = $_GET['member'];
 		query_posts( array(
 					'category_name' => 'articles',

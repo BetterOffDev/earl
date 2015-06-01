@@ -14,6 +14,7 @@ get_header(); ?>
 				<?php 
 					if (isset($_GET['member']) ) {
 						$member_get = '&member='.$_GET['member'];
+						$member = $_GET['member'];
 					}
 					else {
 						$member_get = '';
