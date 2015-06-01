@@ -45,12 +45,7 @@ function wsdev_scoutingnotes_cpt() {
 		'capability_type' => 'post',
 		);
 
-	// if ( function_exists('register_sub_post_type') ) {
-	// 	register_sub_post_type('scoutingnotes', $args, 'video');
-	// }
-	// else {
-	// 	register_post_type('scoutingnotes', $args);
-	// }
+
 	register_post_type('scoutingnotes', $args);
 
 	flush_rewrite_rules(false);

@@ -1,5 +1,5 @@
 <?php 
-
+	global $member;
 	if ( $member ) {
 		query_posts('post_type=memberarticles&posts_per_page=10&paged='.get_query_var('paged').'&author_name='.$member);
 	}

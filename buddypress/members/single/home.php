@@ -162,7 +162,7 @@
 								<a href="<?php bloginfo('url'); ?>/video/?member=<?php echo get_the_author_meta('nicename', bp_displayed_user_id() ) ?>">>> See All Videos</a>
 
 								<?php else : ?>
-								<p><?php bp_displayed_user_fullname(); ?> has no articles at this time.<p>
+								<p><?php bp_displayed_user_fullname(); ?> has no videos at this time.<p>
 								<?php
 
 								endif;
@@ -241,7 +241,7 @@
 						endwhile; ?>
 
 						<br />
-						<a href="#">>> See All Mock Drafts</a>
+						<a href="<?php bloginfo('url'); ?>/mockdrafts/?member=<?php echo get_the_author_meta('nicename', bp_displayed_user_id() ) ?>">>> See All Mock Drafts</a>
 
 						<?php else : ?>
 						<p><?php bp_displayed_user_fullname(); ?> has no mock drafts at this time.<p>
