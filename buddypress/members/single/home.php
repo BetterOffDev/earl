@@ -200,7 +200,17 @@
 						endwhile; ?>
 
 						<br />
-						<a href="<?php bloginfo('url'); ?>/memberarticles/?member=<?php echo get_the_author_meta('nicename', bp_displayed_user_id() ) ?>">>> See All Articles</a>
+						<?php
+							$author_data = get_userdata( bp_displayed_user_id() );
+							$author_role = implode(', ', $author_data->roles);
+							if ( $author_role != 'member' ) {
+								$link = "category/articles";
+							}
+							else {
+								$link = "memberarticles";
+							}
+						?>
+						<a href="<?php bloginfo('url'); ?>/<?php echo $link; ?>/?member=<?php echo get_the_author_meta('nicename', bp_displayed_user_id() ) ?>">>> See All Articles</a>
 
 						<?php else : ?>
 						<p><?php bp_displayed_user_fullname(); ?> has no articles at this time.<p>

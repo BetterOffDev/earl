@@ -1,9 +1,27 @@
-<?php query_posts( array(
+<?php 
+
+	if ( $_GET['member'] ) {
+		$member = $_GET['member'];
+		query_posts( array(
+					'category_name' => 'articles',
+					'post_type' => array('post', 'memberarticles'),
+					'posts_per_page' => 10,
+					'paged' => get_query_var('paged'),
+					'author_name' => $member
+					) );
+	}
+
+	else {
+		query_posts( array(
 					'category_name' => 'articles',
 					'post_type' => array('post', 'memberarticles'),
 					'posts_per_page' => 10,
 					'paged' => get_query_var('paged') 
 					) );
+	}
+
+
+	
 					
 if (have_posts()) : while (have_posts()) : the_post(); ?>
 
