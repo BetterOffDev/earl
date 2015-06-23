@@ -133,7 +133,7 @@
 	}
 
 	else {
-		$draft_class = '2015';
+		$draft_class = '2016';
 	}
 
 ?>
