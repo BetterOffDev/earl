@@ -184,7 +184,7 @@
 						$article_args = array(
 									'post_type' => array('post', 'memberarticles'),
 									'author_name' => $author_name,
-									'cat' => 6,
+									// 'cat' => 6,
 									'category__not_in' => 21,
 									'posts_per_page' => 10,
 								);
@@ -232,14 +232,14 @@
 						$mock_args = array(
 									'post_type' => array( 'post', 'mockdrafts' ),
 									'author_name' => $author_name,
-		     						'cat' => 21,
+		     						'cat' => 6,
 									'posts_per_page' => 10,
 								);
 						$mocks = new WP_Query($mock_args);
 
 						if ( $mocks->have_posts() ) : while ( $mocks->have_posts() ) : $mocks->the_post(); 
 					
-							if ( get_post_type() == 'post' && !in_category(21) ) {
+							if ( get_post_type() == 'post' && !in_category(6) ) {
 								continue;
 							} 
 

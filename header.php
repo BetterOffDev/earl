@@ -113,7 +113,6 @@
 	        				</li>
 	        				<li><a href="<?php bloginfo('url'); ?>/category/rankings">Rankings</a></li>
 					        <li><a href="<?php bloginfo('url'); ?>/mockdrafts">Mock Drafts</a></li>
-					        <li><a href="<?php bloginfo('url'); ?>/category/news">Draft News</a></li>
 					        <li><a href="<?php bloginfo('url'); ?>/about">About</a></li>
 					        <li><a href="<?php bloginfo('url'); ?>/contact">Contact</a></li>
 					        <li class="dropdown">

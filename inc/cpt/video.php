@@ -123,6 +123,7 @@ function wsdev_video_metabox() {
 	<h4>Video Year (season game takes place)</h4>
 	<select name="_video_year">
 			<option <?php if ( $video_year == '') echo "selected='selected'"; ?> value="">&nbsp;</option>
+			<option <?php if ( $video_year == '2015') echo "selected='selected'"; ?> value="2015">2015</option>
 			<option <?php if ( $video_year == '2014') echo "selected='selected'"; ?> value="2014">2014</option>
 			<option <?php if ( $video_year == '2013') echo "selected='selected'"; ?> value="2013">2013</option>
 			<option <?php if ( $video_year == '2012') echo "selected='selected'"; ?> value="2012">2012</option>

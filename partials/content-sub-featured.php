@@ -3,7 +3,7 @@
 	$args = array('posts_per_page' => 6,
 				  'offset' => 1,
                   'post_type' => array('post', 'memberarticles', 'mockdrafts'),
-                  'cat' => 6,
+                  // 'cat' => 6,
                   'post__not_in' => $featured_posts );
     $featured = new WP_Query($args);
     $i = 0;

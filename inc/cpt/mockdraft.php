@@ -258,7 +258,7 @@ function mock_team_select() {
 				'Pittsburgh Steelers' => 'PIT',
 				'San Diego Chargers' => 'SD',
 				'San Francisco 49ers' => 'SF',
-				'New Orleans Saints' => 'NO',
+				'Seattle Seahawks' => 'SEA',
 				'St. Louis Rams' => 'STL',
 				'Tampa Bay Buccaneers' => 'TB',
 				'Tennessee Titans' => 'TEN',
@@ -417,7 +417,7 @@ function get_draft_order() {
 					'9' => 'HOU',
 					'10' => 'CHI',
 					'11' => 'NYJ',
-					'12' => 'NO',
+					'12' => 'SEA',
 					'13' => 'KC',
 					'14' => 'CAR',
 					'15' => 'MIA',
@@ -436,7 +436,7 @@ function get_draft_order() {
 					'28' => 'DAL',
 					'29' => 'IND',
 					'30' => 'GB',
-					'31' => 'SEA',
+					'31' => 'NO',
 					'32' => '');
 
 	return $order;
