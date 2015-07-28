@@ -283,7 +283,7 @@ function wsdev_main_image($class = '') {
 
   			case 'memberarticles':
   				if ( $author_role == 'member' ) {
-  					echo '<img src="'.get_bloginfo('template_directory').'/dist/img/member-article-default.png" alt="'.get_the_title().'" class="'.$class.'"/>';
+  					echo '<img src="'.get_bloginfo('template_directory').'/dist/img/nfl-draft.jpg" alt="'.get_the_title().'" class="'.$class.'"/>';
   				}
   				else {
   					$files = get_children('post_parent='.get_the_ID().'&post_type=attachment&post_mime_type=image&order=desc');

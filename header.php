@@ -56,15 +56,15 @@
 
 	    <!-- Taboola Ad Script -->
 	    <script type="text/javascript">
-		  	window._taboola = window._taboola || [];
-		  	_taboola.push({home:'auto'});
-		  	!function (e, f, u) {
-		    	e.async = 1;
-		    	e.src = u;
-		    	f.parentNode.insertBefore(e, f);
-		  	}(document.createElement('script'),
-		  	document.getElementsByTagName('script')[0],
-		  	'http://cdn.taboola.com/libtrc/draftbreakdown/loader.js');
+		  window._taboola = window._taboola || [];
+		  _taboola.push({article:'auto'});
+		  !function (e, f, u) {
+		    e.async = 1;
+		    e.src = u;
+		    f.parentNode.insertBefore(e, f);
+		  }(document.createElement('script'),
+		  document.getElementsByTagName('script')[0],
+		  '//cdn.taboola.com/libtrc/draftbreakdown2-network/loader.js');
 		</script>
 	</head>
 
@@ -74,6 +74,9 @@
 			// user logged in check
 			$header_logged_in = is_user_logged_in();
 			$header_current_user = wp_get_current_user();
+			if (strpos($header_current_user->user_login, ' ') !== false) {
+				$header_current_user->user_login = str_replace(" ", "-", $header_current_user->user_login);
+			}
 		?>
 		<div id="wrap">
 			<!-- navigation -->

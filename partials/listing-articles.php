@@ -1,23 +1,86 @@
 <?php 
 
-	if ( isset($_GET['member']) ) {
-		$member = $_GET['member'];
-		query_posts( array(
-					'category_name' => 'articles',
+	// if ( isset($_GET['member']) ) {
+	// 	$member = $_GET['member'];
+	// 	query_posts( array(
+	// 				'category_name' => 'articles',
+	// 				'post_type' => array('post', 'memberarticles'),
+	// 				'posts_per_page' => 10,
+	// 				'paged' => get_query_var('paged'),
+	// 				'author_name' => $member
+	// 				) );
+	// }
+
+	// else {
+	// 	query_posts( array(
+	// 				'category_name' => 'articles',
+	// 				'post_type' => array('post', 'memberarticles'),
+	// 				'posts_per_page' => 10,
+	// 				'paged' => get_query_var('paged') 
+	// 				) );
+	// }
+
+	global $member;
+
+	if ( $member ) {
+
+		if ( $member == 'all' ) {
+
+			query_posts( 
+				array(
+			     	'category_name' => 'articles',
 					'post_type' => array('post', 'memberarticles'),
-					'posts_per_page' => 10,
-					'paged' => get_query_var('paged'),
-					'author_name' => $member
-					) );
+			     	'posts_per_page' => 10,
+			     	'paged' => get_query_var('paged')
+			    ) 
+			);
+		}
+
+		elseif ( $member == 'staff' ) {
+			// get an array of all the "members"
+			$user_query = new WP_User_Query( array( 'role' => 'Member' ) );
+	    	$members = array();
+	    	if ( ! empty( $user_query->results ) ) {
+				foreach ( $user_query->results as $user ) {
+					array_push($members, $user->ID);
+				}
+			} 
+
+			query_posts( 
+				array(
+			     	'category_name' => 'articles',
+					'post_type' => array('post', 'memberarticles'),
+			     	'author__not_in' => $members,
+			     	'posts_per_page' => 10,
+			     	'paged' => get_query_var('paged') 
+			    ) 
+			);
+		}
+
+		else {
+			query_posts( 
+				array(
+			     	'category_name' => 'articles',
+					'post_type' => array('post', 'memberarticles'),
+			     	'posts_per_page' => 10,
+			     	'paged' => get_query_var('paged'),
+			     	'author_name' => $member 
+			    ) 
+			);
+		}
 	}
 
 	else {
-		query_posts( array(
-					'category_name' => 'articles',
-					'post_type' => array('post', 'memberarticles'),
-					'posts_per_page' => 10,
-					'paged' => get_query_var('paged') 
-					) );
+
+		query_posts( 
+				array(
+			     	'category_name' => 'articles',
+					'post_type' => array('post'),
+			     	'posts_per_page' => 10,
+			     	'paged' => get_query_var('paged') 
+			    ) 
+			);
+		
 	}
 
 

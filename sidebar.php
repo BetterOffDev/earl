@@ -83,14 +83,24 @@ get_header(); ?>
 
 		<div class="row ad ad-sq">
 			<div class="col-sm-12">
-				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-					<!-- Mobile 300x250 -->
+				<!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+					<!-- Mobile 300x250 
 					<ins class="adsbygoogle"
 				     style="display:inline-block;width:300px;height:250px"
 				     data-ad-client="ca-pub-7021861911581046"
 				     data-ad-slot="1528285636"></ins>
 				<script>
 					(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>-->
+				<div id="taboola-right-rail-thumbnails"></div>
+				<script type="text/javascript">
+				  window._taboola = window._taboola || [];
+				  _taboola.push({
+				    mode: 'thumbnails-rr',
+				    container: 'taboola-right-rail-thumbnails',
+				    placement: 'Right Rail Thumbnails',
+				    target_type: 'mix'
+				  });
 				</script>
 			</div>
 		</div>

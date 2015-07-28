@@ -8,6 +8,10 @@
 
 	$current_user = wp_get_current_user();
 
+	if (strpos($current_user->user_login, ' ') !== false) {
+		$current_user->user_login = str_replace(" ", "-", $current_user->user_login);
+	}
+
 	if ( !$current_user ) {
 		wp_redirect( home_url() );
 	}

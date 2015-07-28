@@ -2,6 +2,9 @@
 
 	<?php 
 		$current_user = wp_get_current_user();
+		if (strpos($current_user->user_login, ' ') !== false) {
+			$current_user->user_login = str_replace(" ", "-", $current_user->user_login);
+		}
 		if ( is_user_logged_in() && $current_user->ID == bp_displayed_user_id() ) {
 
 			if ( get_the_author_meta('twitter', bp_displayed_user_id() ) == "" ) {
