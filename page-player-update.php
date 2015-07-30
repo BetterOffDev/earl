@@ -11,6 +11,24 @@ get_header(); ?>
 			
 			<?php 
 
+			/**
+			 *
+			 *
+			 *
+			 *
+			 *   This is the script for updating video counts per player
+			 *
+			 *
+			 *
+			 *   Hopefully you rarely have to use it.
+			 *
+			 *
+			 *
+			 *   
+			 *
+			 *
+			 */
+
 						$args = array('post_type' => 'player',
 										'posts_per_page' => -1,
 										'post_status' => 'publish',

@@ -10,6 +10,27 @@ get_header(); ?>
 		<div class="col-sm-8 main-col">
 			<?php 
 
+
+			/**
+			 *
+			 *
+			 *
+			 *
+			 *   THIS SCRIPT IS ONLY FOR UPDATING VIDEO TITLES
+			 *
+			 *
+			 *
+			 *   IT IS NOT FOR UPDATING VIDEO COUNTS!!!!
+			 *
+			 *
+			 *
+			 *   You will most likely not have to use this script at all. So please don't.
+			 *
+			 *
+			 */
+
+			
+
 						$args = array('post_type' => 'video',
 										'posts_per_page' => -1,
 										'post_status' => 'publish' );
