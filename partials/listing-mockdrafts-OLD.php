@@ -9,7 +9,7 @@
 			query_posts( 
 				array(
 			     	'post_type' => array( 'post', 'mockdrafts' ),
-			     	'cat' => 6,
+			     	'cat' => 21,
 			     	'posts_per_page' => 10,
 			     	'paged' => get_query_var('paged')
 			    ) 
@@ -29,7 +29,7 @@
 			query_posts( 
 				array(
 			     	'post_type' => array( 'post', 'mockdrafts' ),
-			     	'cat' => 6,
+			     	'cat' => 21,
 			     	'author__not_in' => $members,
 			     	'posts_per_page' => 10,
 			     	'paged' => get_query_var('paged') 
@@ -41,7 +41,7 @@
 			query_posts( 
 				array(
 			     	'post_type' => array( 'post', 'mockdrafts' ),
-			     	'cat' => 6,
+			     	'cat' => 21,
 			     	'posts_per_page' => 10,
 			     	'paged' => get_query_var('paged'),
 			     	'author_name' => $member 
@@ -55,7 +55,7 @@
 		query_posts( 
 				array(
 			     	'post_type' => array( 'post', 'mockdrafts' ),
-			     	'cat' => 6,
+			     	'cat' => 21,
 			     	'posts_per_page' => 10,
 			     	'paged' => get_query_var('paged') 
 			    ) 

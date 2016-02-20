@@ -10,8 +10,10 @@
 /**
  * Remove the admin bar
  */
+
 function wsdev_remove_admin_bar() {
-    return false;
+	
+	  show_admin_bar(false);
 }
 
 /**

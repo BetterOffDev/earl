@@ -55,6 +55,10 @@
 						$i = 1;
 						if ($round) {
 							foreach ( $round as $selection ) {
+								// skip pick 32 temporarily
+								if ($i == 32) {
+									continue;
+								}
 								echo '<tr><td class="mock-number" width="60px">';
 								echo $i;
 								echo '</td><td class="mock-team" width="60px">';

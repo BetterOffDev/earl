@@ -1,10 +1,4 @@
-<?php 
-	
-			query_posts( array(
-					'cat' => 2691,
-					'posts_per_page' => 10,
-					'paged' => get_query_var('paged') 
-					) );
+<?php query_posts('posts_per_page=10&paged='.get_query_var('paged'));
 					
 if (have_posts()) : while (have_posts()) : the_post(); ?>
 

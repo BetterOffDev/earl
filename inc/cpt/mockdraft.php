@@ -436,8 +436,8 @@ function get_draft_order() {
 					'28' => 'DAL',
 					'29' => 'IND',
 					'30' => 'GB',
-					'31' => 'NO',
-					'32' => '');
+					'31' => 'NO');
+	// removed pick 32 temporarily
 
 	return $order;
 }

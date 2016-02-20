@@ -12,8 +12,8 @@ function wsdev_earl_setup() {
 
 	// Remove the admin bar
 	// Function location: /lib/theme-functions.php
-	add_filter( 'show_admin_bar' , 'wsdev_remove_admin_bar');
-
+	//add_filter( 'show_admin_bar' , 'wsdev_remove_admin_bar');
+	add_action('after_setup_theme', 'wsdev_remove_admin_bar');
 	// Clean up the head
 	remove_action( 'wp_head', 'rsd_link' );
 	remove_action( 'wp_head', 'wlwmanifest_link' );

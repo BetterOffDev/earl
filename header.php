@@ -114,7 +114,7 @@
 						            <li><a href="<?php bloginfo('url'); ?>/category/draft-guide">Draft Guide</a></li>
 	          					</ul>
 	        				</li>
-	        				<li><a href="<?php bloginfo('url'); ?>/category/rankings">Rankings</a></li>
+	        				<li><a href="<?php bloginfo('url'); ?>/category/podcasts">Podcasts</a></li>
 					        <li><a href="<?php bloginfo('url'); ?>/mockdrafts">Mock Drafts</a></li>
 					        <li><a href="<?php bloginfo('url'); ?>/about">About</a></li>
 					        <li><a href="<?php bloginfo('url'); ?>/contact">Contact</a></li>

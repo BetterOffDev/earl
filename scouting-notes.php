@@ -6,7 +6,7 @@
 ?>
 <div class="row">
   <div class="col-xs-12">
-    <h3 id="DBDScoutingNotes">Scouting Tools</h3>
+    <h3 id="DBDScoutingNotes">Scouting Tools.</h3>
     <?php if(isset($postAdded) && $postAdded == true) { ?>
          <div class="alert alert-success">
               <button type="button" class="close" data-dismiss="alert">&times;</button> Your scouting notes were added successfully.
@@ -83,7 +83,7 @@
                         );
                     ?>
                     <?php wp_editor( $content, $editor_id, $settings ); ?>
-                        <!-- <textarea id="notes" tabindex="2" name="notes" cols="100" rows="6" class="requiredField"><?php if(isset($postAdded) && $postAdded == true) { echo ""; } elseif(isset($_POST['notes'])) { echo $_POST['notes']; } ?></textarea> -->
+                        <!-- <textarea id="notes" tabindex="2" name="notes" cols="100" rows="6" class="requiredField"><?php //if(isset($postAdded) && $postAdded == true) { echo ""; } elseif(isset($_POST['notes'])) { echo $_POST['notes']; } ?></textarea> -->
                    </div>
                    <!--<script type="text/javascript">
                         jQuery(function($) {
@@ -114,8 +114,38 @@
     <?php
          global $current_user;
          get_currentuserinfo();
-         $sponsornotes = new WP_Query( array( 'posts_per_page' => -1, 'post_type' => 'scoutingnotes', 'meta_key' => '_notes_video', 'meta_value' => get_the_ID(), 'meta_query' => array( array( 'key' => 'sponsored', 'compare' => 'EXISTS' ), array( 'key' => '_private_note', 'value' => 'checked', 'compare' => 'NOT LIKE' ) ) ) );
-         $generalnotes = new WP_Query( array( 'posts_per_page' => -1, 'post_type' => 'scoutingnotes', 'meta_key' => '_notes_video', 'meta_value' => get_the_ID(), 'meta_query' => array( array( 'key' => 'sponsored', 'compare' => 'NOT EXISTS' ), array( 'key' => '_private_note', 'value' => 'checked', 'compare' => 'NOT LIKE' ) ) ) );
+         $sponsornotes = new WP_Query( array( 
+                                      'posts_per_page' => -1, 
+                                      'post_type' => 'scoutingnotes', 
+                                      'meta_key' => '_notes_video', 
+                                      'meta_value' => get_the_ID(), 
+                                      'meta_query' => array( 
+                                          array( 
+                                            'key' => 'sponsored', 
+                                            'compare' => 'EXISTS' ), 
+                                          array( 
+                                            'key' => '_private_note', 
+                                            'value' => 'checked', 
+                                            'compare' => 'NOT LIKE' ) 
+                                          ) 
+                                      ) 
+         );
+         $generalnotes = new WP_Query( array( 
+                                      'posts_per_page' => -1, 
+                                      'post_type' => 'scoutingnotes', 
+                                      'meta_key' => '_notes_video', 
+                                      'meta_value' => get_the_ID(), 
+                                      'meta_query' => array( 
+                                        array( 
+                                          'key' => 'sponsored', 
+                                          'compare' => 'NOT EXISTS' ), 
+                                        array( 
+                                          'key' => '_private_note', 
+                                          'value' => 'checked', 
+                                          'compare' => 'NOT LIKE' ) 
+                                        ) 
+                                      ) 
+         );
 
          while ($sponsornotes->have_posts()) : $sponsornotes->the_post(); ?>
               <li id="notes-<?php the_ID(); ?>" class="scout-notes sponsor-notes">

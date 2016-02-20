@@ -84,7 +84,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     
-                    <iframe width="600" height="338" src="http://www.gfycat.com/<?php echo $gfy; ?>" frameborder="0" scrolling="no"></iframe>
+                    <iframe width="600" height="338" src="http://gfycat.com/ifr/<?php echo $gfy; ?>" frameborder="0" scrolling="no" style="-webkit-backface-visibility: hidden;-webkit-transform: scale(1);" ></iframe>
 
                 </div>
             </div>
@@ -97,6 +97,17 @@
                     <div class="col-xs-5" style="text-align: right;">
                         <a href="http://www.draftbreakdown.com" target="_blank"><img src="<?php bloginfo('stylesheet_directory'); ?>/dist/img/db-embed-small.png" /></a>
                     </div>
+<div style="float: center; margin:">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Embed ads -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:468px;height:60px"
+     data-ad-client="ca-pub-7021861911581046"
+     data-ad-slot="5021918830"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
                 </div>
             </div>
             <div style="display: none;">

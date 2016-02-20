@@ -29,6 +29,10 @@ if( 'POST' == $_SERVER['REQUEST_METHOD'] && !empty( $_POST['action'] ) &&  $_POS
             // Check if note is marked for private
             $private_note = $_POST['private_note'];
 
+            if ($private_note != 'checked') {
+               $private_note = '';
+            }
+
             // Add the form input to $new_post array
             if (empty($error)) {
                $new_post = array(

@@ -1,7 +1,7 @@
 <?php 
 	
 			query_posts( array(
-					'cat' => 2691,
+					'category_name' => 'podcasts',
 					'posts_per_page' => 10,
 					'paged' => get_query_var('paged') 
 					) );

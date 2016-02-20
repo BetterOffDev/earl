@@ -109,7 +109,7 @@ get_header(); ?>
 				?>
 				<!--<?php 
 
-						$author_name = get_the_author_meta('user_nicename', bp_displayed_user_id() );
+						/*$author_name = get_the_author_meta('user_nicename', bp_displayed_user_id() );
 
 						$notes_args = array(
 									'post_type' => 'scoutingnotes',
@@ -136,7 +136,7 @@ get_header(); ?>
 
 						endif;
 
-						wp_reset_query();
+						wp_reset_query();*/
 					?>-->
 				<?php
 
@@ -190,16 +190,16 @@ get_header(); ?>
 		    	//if ($notes->have_posts()) : while ($notes->have_posts()) : $notes->the_post(); ?>
 
 		    	<!--<?php the_title(); ?>
-		    	Private? <?php echo get_post_meta( get_the_ID(), '_private_note', true ); ?>
+		    	Private? <?php //echo get_post_meta( get_the_ID(), '_private_note', true ); ?>
 		    	<br />
 		    	<?php
-		    		$private_note = get_post_meta( get_the_ID(), '_private_note', true); 
+		    		/*$private_note = get_post_meta( get_the_ID(), '_private_note', true); 
 		    		if ( get_post_meta( get_the_ID(), '_private_note', FALSE) ) {
 				      update_post_meta( get_the_ID(), '_private_note', $private_note );
 				   }
 				   else {
 				      add_post_meta(get_the_ID(), '_private_note', $private_note);
-				   }
+				   }*/
 				?>
 
 		    <?php //endwhile; endif; ?>-->
@@ -234,43 +234,44 @@ get_header(); ?>
 
 		    ?>
 
-		    <style>
-			  	#sortable { margin: 25px; padding: 0; width: 75%; }
-			  	#sortable li { margin: 0 3px 3px 3px; padding: 2px; padding-left: 15px; height: 25px; cursor: move; }
-			  	#sortable li span { float: left; margin-left: -15px; }
-			</style>
-			<article>
-				<h2>Drag and drop player rankings test</h2>
-			    <?php
+		    <?php
 
-			    	// let's test out some drag and drop for player rankings!
-			    	$args = array('post_type' => 'player', 'posts_per_page' => -1, 'meta_key' => '_position', 'meta_value' => 'QB',
-			    				'meta_query' => array( array( 'key' => '_draft_class', 'value' => 2015, 'compare' => '=')));
+		    	$sponsornotes = new WP_Query( array( 'posts_per_page' => -1, 'post_type' => 'scoutingnotes', 'meta_key' => '_notes_video', 'meta_value' => 260704, 'meta_query' => array( array( 'key' => 'sponsored', 'compare' => 'EXISTS' ), array( 'key' => '_private_note', 'value' => 'checked', 'compare' => 'NOT LIKE' ) ) ) );
 
-			    	$players = new WP_Query($args);
+		    	$generalnotes = new WP_Query( array( 'posts_per_page' => -1, 'post_type' => 'scoutingnotes', 'meta_key' => '_notes_video', 'meta_value' => 256631, 'meta_query' => array( array( 'key' => 'sponsored', 'compare' => 'NOT EXISTS' ), array( 'key' => '_private_note', 'value' => 'checked', 'compare' => 'NOT LIKE' ) ) ) );
 
-			    	echo '<ol id="sortable">';
+		    	// $note = new WP_Query( array('post_type' => 'scoutingnotes', 'p' => 260704));
 
-			    	while ($players->have_posts()) : $players->the_post();
+		    	// $notes = new WP_Query( array('post_type' => 'scoutingnotes', 'posts_per_page' => -1, 'meta_key' => '_notes_video', 'meta_value' => 256631, 'meta_query' => array( array( 'key' => 'sponsored', 'compare' => 'NOT EXISTS'), array('key' => '_private_note', 'value' => 'checked', 'compare' => 'NOT LIKE'))));
 
-			    	echo '<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>'.get_the_title().' - '.get_post_meta(get_the_ID(), '_school', true).'</li>';
+		    	$notes = new WP_Query( array('post_type' => 'scoutingnotes', 'posts_per_page' => -1));
 
-			    	endwhile;
-			    	echo '</ol>';
+		    	while ($notes->have_posts()) : $notes->the_post();
 
+		    	// $meta = get_post_meta(get_the_ID());
 
-			    ?>
-		    </article>
+		    	// foreach ($meta as $item) {
+		    	// 	foreach ($item as $x) {
+		    	// 		echo $x.'<br />';
+		    	// 	}
+		    	// }
 
-		    <!-- jquery ui script -->
-		    <script>
+		    	// print_r($meta);
 
-		    	jQuery( "#sortable" ).sortable({
-		    		cursor: 'move'
-		    	});
-    			jQuery( "#sortable" ).disableSelection();
+		    	$meta = get_post_meta(get_the_ID(), '_private_note', true);
+		    	if ($meta == '') {
+		    		echo 'no<br />';
+		    	}
+		    	else {
+		    		echo $meta.'<br />';
+		    	}
 
-		    </script>
+		    	// if (get_post_meta(get_the_ID(), '_private_note', true) != 'checked') {
+		    	// 	update_post_meta( get_the_ID(), '_private_note', '' );
+		    	// }
+
+		    	endwhile;
+		   	?>
 		
 		</div>
 

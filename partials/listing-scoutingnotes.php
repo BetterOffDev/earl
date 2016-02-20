@@ -29,7 +29,7 @@
 			     	'paged' => get_query_var('paged'),
 			     	'author_name' => $member,
 			     	'meta_query' => array( 
-			     		array( 'key' => '_private_note', 'value' => 'checked', 'compare' => 'NOT LIKE' ) 
+			     		array( 'key' => '_private_note', 'value' => 'checked', 'compare' => '!=' ) 
 			     	)
 			    ) 
 			);
@@ -43,7 +43,7 @@
 		     	'posts_per_page' => 10,
 		     	'paged' => get_query_var('paged'),
 		     	'meta_query' => array(
-		     		array( 'key' => '_private_note', 'value' => 'checked', 'compare' => 'NOT LIKE' )
+		     		array( 'key' => '_private_note', 'value' => 'checked', 'compare' => '!=' )
 		     	)
 		    ) 
 		);

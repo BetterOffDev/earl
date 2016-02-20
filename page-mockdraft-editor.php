@@ -305,7 +305,9 @@ get_header(); ?>
                       </thead>
                       <tbody>
                         <?php
-                          for ( $i = 1; $i < 33; $i++ ) {
+                          // changed from this temporarily
+                          //for ( $i = 1; $i < 33; $i++ ) {
+                          for ( $i = 1; $i < 32; $i++ ) {
                             $round_num = 1;
                             echo '<tr style="vertical-align: top;"><td style="max-width: 15px;">';
                             echo $i;
